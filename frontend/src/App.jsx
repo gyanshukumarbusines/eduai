@@ -2821,13 +2821,13 @@ const getDisplaySubjects = () => {
 
               <H3 C={C}>Your Current Scores (%)</H3>
               <div style={{ marginBottom:18 }}>
-                <ResponsiveContainer width="100%" height={200}>
-                  <RadarChart data={subjectList.map(sub => ({ sub, score: getDisplaySubjects()[sub] }))}>
-                    <PolarGrid stroke={C.border} />
-                    <PolarAngleAxis dataKey="sub" tick={{ fill:C.sub, fontSize:11 }} />
-                    <Radar name="Score" dataKey="score" stroke={C.accent} fill={C.accent} fillOpacity={0.25} strokeWidth={2} />
-                  </RadarChart>
-                </ResponsiveContainer>
+              <ResponsiveContainer width="100%" height={240}>
+              <RadarChart data={subjectList.map(sub => ({ sub, score: getDisplaySubjects()[sub] }))} outerRadius="65%" margin={{ top:20, right:40, bottom:20, left:40 }}>
+              <PolarGrid stroke={C.border} />
+              <PolarAngleAxis dataKey="sub" tick={{ fill:C.sub, fontSize:11 }} />
+              <Radar name="Score" dataKey="score" stroke={C.accent} fill={C.accent} fillOpacity={0.25} strokeWidth={2} />
+              </RadarChart>
+              </ResponsiveContainer>
                 {Object.keys(realSubjectAverages).length > 0 && <div style={{ fontSize:11, color:C.sub, textAlign:"center", marginTop:4 }}>Pre-filled from your real exam & quiz history where available — drag sliders below for what-if scenarios.</div>}
               </div>
               {subjectList.map(sub => (
