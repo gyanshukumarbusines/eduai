@@ -1,0 +1,1927 @@
+{
+  "users": [
+    {
+      "id": "1787218044814",
+      "name": "Gyanshu kumar",
+      "email": "kumargyanshu333@gmail.com",
+      "password": "40dd2b010d461c24e48783a18bd6d051d7e24c8b32079bb913a27860f83295e9",
+      "role": "student",
+      "studentClass": "12",
+      "section": "A",
+      "stream": "Science",
+      "sciencePart": "PCM",
+      "streak": 0,
+      "notifications": {
+        "email": true,
+        "sms": true,
+        "push": true,
+        "examReminder": true,
+        "aiInsights": true
+      }
+    },
+    {
+      "id": "1787218345093",
+      "name": "Gyanshu kumar",
+      "email": "gyanshukumarbusiness@gmail.com",
+      "password": "0be16c73a0fddcd68585f91516a5a7dc417b99a29fb186a177250a8413ac7013",
+      "role": "teacher",
+      "subjects": [
+        "mathematics",
+        "Physics"
+      ],
+      "streak": 0
+    }
+  ],
+  "scores": [
+    {
+      "id": "1787220041797",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "examName": "Integration",
+      "score": 45,
+      "totalMarks": 100,
+      "percentage": 45,
+      "date": "2026-08-20T10:00:41.797Z"
+    },
+    {
+      "id": "1787220589919",
+      "userId": "1787218044814",
+      "subject": "Chemistry",
+      "examName": "Haloalkanes and Haloarenes",
+      "score": 60,
+      "totalMarks": 100,
+      "percentage": 60,
+      "date": "2026-08-20T10:09:49.919Z"
+    },
+    {
+      "id": "1787221844638",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "examName": "Quiz: Electric Charges and Fields",
+      "score": 25,
+      "totalMarks": 75,
+      "percentage": 33,
+      "date": "2026-08-20T10:30:44.638Z"
+    },
+    {
+      "id": "1787435442193",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "examName": "integration",
+      "score": 65,
+      "totalMarks": 95,
+      "percentage": 68,
+      "date": "2026-08-22T21:50:42.193Z"
+    },
+    {
+      "id": "1787584226263",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "examName": "Quiz: Current Electricity",
+      "score": 30,
+      "totalMarks": 50,
+      "percentage": 60,
+      "date": "2026-08-24T15:10:26.263Z"
+    },
+    {
+      "id": "1787587022089",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "examName": "Electrostatic Potential and Capacitance",
+      "score": 55,
+      "totalMarks": 100,
+      "percentage": 55,
+      "date": "2026-08-24T15:57:02.089Z"
+    },
+    {
+      "id": "1787652757078",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "examName": "Application of Derivatives",
+      "score": 60,
+      "totalMarks": 110,
+      "percentage": 55,
+      "date": "2026-08-25T10:12:37.078Z"
+    },
+    {
+      "id": "1787653399587",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "examName": "Continuity and Differentiability",
+      "score": 90,
+      "totalMarks": 95,
+      "percentage": 95,
+      "date": "2026-08-25T10:23:19.587Z"
+    }
+  ],
+  "exams": [
+    {
+      "id": "1787387390704",
+      "title": "Electrostatic Potential and Capacitance",
+      "subject": "Physics",
+      "duration": 60,
+      "date": "2026-08-22",
+      "questions": [
+        {
+          "q": "What is the unit of electrostatic potential?",
+          "opts": [
+            "Volt",
+            "Coulomb",
+            "Ampere",
+            "Joule"
+          ],
+          "ans": 0,
+          "explanation": "The unit of electrostatic potential is Volt, which is defined as the potential difference between two points when a unit charge is moved from one point to the other against an electric field.",
+          "marks": 5
+        },
+        {
+          "q": "A charge of 2 microCoulomb is placed at a point in free space. What is the potential at a distance of 10 cm from the charge?",
+          "opts": [
+            "9 x 10^4 V",
+            "18 x 10^4 V",
+            "2 x 10^4 V",
+            "1 x 10^4 V"
+          ],
+          "ans": 1,
+          "explanation": "The potential at a distance r from a charge q is given by V = kq/r, where k is Coulomb's constant. Substituting the values, we get V = (9 x 10^9) x (2 x 10^-6) / (0.1) = 18 x 10^4 V.",
+          "marks": 5
+        },
+        {
+          "q": "Two capacitors of capacitance 2 microFarad and 3 microFarad are connected in series. What is the equivalent capacitance?",
+          "opts": [
+            "1 microFarad",
+            "2 microFarad",
+            "3 microFarad",
+            "0.6 microFarad"
+          ],
+          "ans": 3,
+          "explanation": "When capacitors are connected in series, the equivalent capacitance is given by 1/C = 1/C1 + 1/C2. Substituting the values, we get 1/C = 1/2 + 1/3 = 5/6, so C = 0.6 microFarad.",
+          "marks": 5
+        },
+        {
+          "q": "A parallel plate capacitor has a capacitance of 100 picoFarad. If the plate separation is doubled, what is the new capacitance?",
+          "opts": [
+            "50 picoFarad",
+            "100 picoFarad",
+            "200 picoFarad",
+            "25 picoFarad"
+          ],
+          "ans": 0,
+          "explanation": "The capacitance of a parallel plate capacitor is given by C = epsilon A / d, where epsilon is the permittivity, A is the plate area, and d is the plate separation. If the plate separation is doubled, the capacitance is halved, so the new capacitance is 50 picoFarad.",
+          "marks": 5
+        },
+        {
+          "q": "What is the energy stored in a capacitor of capacitance 10 microFarad when it is charged to a potential of 100 V?",
+          "opts": [
+            "0.05 J",
+            "0.5 J",
+            "5 J",
+            "50 J"
+          ],
+          "ans": 0,
+          "explanation": "The energy stored in a capacitor is given by E = (1/2)CV^2, where C is the capacitance and V is the potential. Substituting the values, we get E = (1/2) x (10 x 10^-6) x (100)^2 = 0.05 J.",
+          "marks": 5
+        },
+        {
+          "q": "A spherical shell of radius 10 cm has a charge of 5 microCoulomb. What is the potential at the center of the shell?",
+          "opts": [
+            "4.5 x 10^5 V",
+            "9 x 10^5 V",
+            "2.25 x 10^5 V",
+            "1.125 x 10^5 V"
+          ],
+          "ans": 2,
+          "explanation": "The potential at the center of a spherical shell is given by V = kq/r, where k is Coulomb's constant, q is the charge, and r is the radius. Substituting the values, we get V = (9 x 10^9) x (5 x 10^-6) / (0.1) = 4.5 x 10^5 V.",
+          "marks": 5
+        },
+        {
+          "q": "Two capacitors of capacitance 4 microFarad and 6 microFarad are connected in parallel. What is the equivalent capacitance?",
+          "opts": [
+            "2 microFarad",
+            "4 microFarad",
+            "6 microFarad",
+            "10 microFarad"
+          ],
+          "ans": 3,
+          "explanation": "When capacitors are connected in parallel, the equivalent capacitance is given by C = C1 + C2. Substituting the values, we get C = 4 + 6 = 10 microFarad.",
+          "marks": 5
+        },
+        {
+          "q": "A capacitor of capacitance 50 picoFarad is connected to a battery of emf 10 V. What is the charge on the capacitor?",
+          "opts": [
+            "0.5 microCoulomb",
+            "5 microCoulomb",
+            "50 microCoulomb",
+            "500 microCoulomb"
+          ],
+          "ans": 0,
+          "explanation": "The charge on a capacitor is given by Q = CV, where C is the capacitance and V is the potential. Substituting the values, we get Q = (50 x 10^-12) x (10) = 0.5 x 10^-9 C = 0.5 microCoulomb.",
+          "marks": 5
+        },
+        {
+          "q": "What is the capacitance of a parallel plate capacitor with plate area 100 cm^2 and plate separation 1 mm?",
+          "opts": [
+            "8.85 picoFarad",
+            "88.5 picoFarad",
+            "885 picoFarad",
+            "8.85 nanoFarad"
+          ],
+          "ans": 1,
+          "explanation": "The capacitance of a parallel plate capacitor is given by C = epsilon A / d, where epsilon is the permittivity, A is the plate area, and d is the plate separation. Substituting the values, we get C = (8.85 x 10^-12) x (100 x 10^-4) / (1 x 10^-3) = 88.5 x 10^-12 F = 88.5 picoFarad.",
+          "marks": 5
+        },
+        {
+          "q": "A capacitor of capacitance 200 picoFarad is charged to a potential of 50 V. What is the energy stored in the capacitor?",
+          "opts": [
+            "0.25 microJ",
+            "2.5 microJ",
+            "25 microJ",
+            "250 microJ"
+          ],
+          "ans": 1,
+          "explanation": "The energy stored in a capacitor is given by E = (1/2)CV^2, where C is the capacitance and V is the potential. Substituting the values, we get E = (1/2) x (200 x 10^-12) x (50)^2 = 2.5 x 10^-6 J = 2.5 microJ.",
+          "marks": 5
+        },
+        {
+          "q": "What is the potential at a point due to a point charge of 5 microCoulomb placed at a distance of 20 cm from the point?",
+          "opts": [
+            "2.25 x 10^5 V",
+            "4.5 x 10^5 V",
+            "9 x 10^5 V",
+            "1.8 x 10^5 V"
+          ],
+          "ans": 1,
+          "explanation": "The potential at a point due to a point charge is given by V = kq/r, where k is Coulomb's constant, q is the charge, and r is the distance. Substituting the values, we get V = (9 x 10^9) x (5 x 10^-6) / (0.2) = 2.25 x 10^5 V.",
+          "marks": 5
+        },
+        {
+          "q": "A capacitor of capacitance 10 microFarad is connected to a battery of emf 20 V. What is the charge on the capacitor?",
+          "opts": [
+            "0.2 microCoulomb",
+            "2 microCoulomb",
+            "20 microCoulomb",
+            "200 microCoulomb"
+          ],
+          "ans": 1,
+          "explanation": "The charge on a capacitor is given by Q = CV, where C is the capacitance and V is the potential. Substituting the values, we get Q = (10 x 10^-6) x (20) = 2 x 10^-4 C = 2 microCoulomb.",
+          "marks": 5
+        },
+        {
+          "q": "What is the capacitance of a spherical capacitor with inner radius 5 cm and outer radius 10 cm?",
+          "opts": [
+            "0.11 microFarad",
+            "1.1 microFarad",
+            "11 microFarad",
+            "110 microFarad"
+          ],
+          "ans": 0,
+          "explanation": "The capacitance of a spherical capacitor is given by C = 4pi epsilon (R1 R2) / (R2 - R1), where epsilon is the permittivity, R1 is the inner radius, and R2 is the outer radius. Substituting the values, we get C = (4pi x 8.85 x 10^-12) x (0.05 x 0.1) / (0.1 - 0.05) = 0.11 x 10^-6 F = 0.11 microFarad.",
+          "marks": 5
+        },
+        {
+          "q": "A capacitor of capacitance 50 picoFarad is charged to a potential of 100 V. What is the energy stored in the capacitor?",
+          "opts": [
+            "0.25 microJ",
+            "2.5 microJ",
+            "25 microJ",
+            "250 microJ"
+          ],
+          "ans": 0,
+          "explanation": "The energy stored in a capacitor is given by E = (1/2)CV^2, where C is the capacitance and V is the potential. Substituting the values, we get E = (1/2) x (50 x 10^-12) x (100)^2 = 0.25 x 10^-6 J = 0.25 microJ.",
+          "marks": 5
+        },
+        {
+          "q": "What is the potential at the center of a spherical shell of radius 10 cm and charge 2 microCoulomb?",
+          "opts": [
+            "1.8 x 10^5 V",
+            "3.6 x 10^5 V",
+            "9 x 10^5 V",
+            "1.8 x 10^4 V"
+          ],
+          "ans": 1,
+          "explanation": "The potential at the center of a spherical shell is given by V = kq/r, where k is Coulomb's constant, q is the charge, and r is the radius. Substituting the values, we get V = (9 x 10^9) x (2 x 10^-6) / (0.1) = 1.8 x 10^5 V.",
+          "marks": 5
+        },
+        {
+          "q": "Two capacitors of capacitance 3 microFarad and 6 microFarad are connected in series. What is the equivalent capacitance?",
+          "opts": [
+            "1.5 microFarad",
+            "2 microFarad",
+            "3 microFarad",
+            "4 microFarad"
+          ],
+          "ans": 1,
+          "explanation": "When capacitors are connected in series, the equivalent capacitance is given by 1/C = 1/C1 + 1/C2. Substituting the values, we get 1/C = 1/3 + 1/6 = 3/6, so C = 2 microFarad.",
+          "marks": 5
+        },
+        {
+          "q": "A capacitor of capacitance 200 picoFarad is connected to a battery of emf 50 V. What is the charge on the capacitor?",
+          "opts": [
+            "0.01 microCoulomb",
+            "0.1 microCoulomb",
+            "1 microCoulomb",
+            "10 microCoulomb"
+          ],
+          "ans": 1,
+          "explanation": "The charge on a capacitor is given by Q = CV, where C is the capacitance and V is the potential. Substituting the values, we get Q = (200 x 10^-12) x (50) = 0.1 x 10^-6 C = 0.1 microCoulomb.",
+          "marks": 5
+        },
+        {
+          "q": "What is the energy stored in a capacitor of capacitance 10 microFarad when it is charged to a potential of 50 V?",
+          "opts": [
+            "0.0125 J",
+            "0.125 J",
+            "1.25 J",
+            "12.5 J"
+          ],
+          "ans": 1,
+          "explanation": "The energy stored in a capacitor is given by E = (1/2)CV^2, where C is the capacitance and V is the potential. Substituting the values, we get E = (1/2) x (10 x 10^-6) x (50)^2 = 0.125 J.",
+          "marks": 5
+        },
+        {
+          "q": "A parallel plate capacitor has a capacitance of 100 picoFarad. If the plate area is doubled, what is the new capacitance?",
+          "opts": [
+            "50 picoFarad",
+            "100 picoFarad",
+            "200 picoFarad",
+            "400 picoFarad"
+          ],
+          "ans": 2,
+          "explanation": "The capacitance of a parallel plate capacitor is given by C = epsilon A / d, where epsilon is the permittivity, A is the plate area, and d is the plate separation. If the plate area is doubled, the capacitance is also doubled, so the new capacitance is 200 picoFarad.",
+          "marks": 5
+        },
+        {
+          "q": "What is the potential at a point due to a point charge of 10 microCoulomb placed at a distance of 50 cm from the point?",
+          "opts": [
+            "1.8 x 10^6 V",
+            "3.6 x 10^6 V",
+            "9 x 10^6 V",
+            "1.8 x 10^5 V"
+          ],
+          "ans": 2,
+          "explanation": "The potential at a point due to a point charge is given by V = kq/r, where k is Coulomb's constant, q is the charge, and r is the distance. Substituting the values, we get V = (9 x 10^9) x (10 x 10^-6) / (0.5) = 1.8 x 10^5 V.",
+          "marks": 5
+        }
+      ],
+      "totalMarks": 100,
+      "createdBy": "Teacher",
+      "createdAt": "2026-08-22T08:29:50.704Z"
+    },
+    {
+      "id": "1787584890594",
+      "title": "Haloalkanes and Haloarenes",
+      "subject": "Chemistry",
+      "duration": 60,
+      "date": "2026-08-24",
+      "questions": [
+        {
+          "q": "What is the primary reason for the low reactivity of fluorine in haloalkanes?",
+          "opts": [
+            "Low electronegativity",
+            "High electronegativity",
+            "Low bond energy",
+            "High bond energy"
+          ],
+          "ans": 1,
+          "explanation": "Fluorine is highly electronegative, which results in a strong bond with carbon, making it less reactive.",
+          "marks": 5
+        },
+        {
+          "q": "Which of the following haloalkanes is most stable?",
+          "opts": [
+            "CH3F",
+            "CH3Cl",
+            "CH3Br",
+            "CH3I"
+          ],
+          "ans": 0,
+          "explanation": "The stability of haloalkanes increases with the decreasing size of the halogen atom due to the increasing strength of the carbon-halogen bond.",
+          "marks": 5
+        },
+        {
+          "q": "What is the product of the reaction between chloroethane and sodium hydroxide?",
+          "opts": [
+            "Ethene",
+            "Ethanol",
+            "Ethyl ether",
+            "Diethyl ether"
+          ],
+          "ans": 1,
+          "explanation": "Chloroethane reacts with sodium hydroxide to form ethanol through an SN1 or SN2 reaction mechanism.",
+          "marks": 5
+        },
+        {
+          "q": "Which of the following is NOT a characteristic of haloarenes?",
+          "opts": [
+            "High reactivity towards nucleophilic substitution",
+            "Low reactivity towards electrophilic substitution",
+            "High reactivity towards electrophilic substitution",
+            "Presence of halogen atom"
+          ],
+          "ans": 0,
+          "explanation": "Haloarenes are less reactive towards nucleophilic substitution due to the partial double bond character between the carbon and halogen atoms, which makes the carbon-halogen bond stronger.",
+          "marks": 5
+        },
+        {
+          "q": "What is the effect of the halogen atom on the reactivity of an arene ring in electrophilic aromatic substitution?",
+          "opts": [
+            "Deactivates the ring",
+            "Activates the ring",
+            "Has no effect on the ring",
+            "Increases the ring's basicity"
+          ],
+          "ans": 0,
+          "explanation": "The halogen atom is an electron-withdrawing group that deactivates the arene ring, making it less reactive towards electrophilic substitution.",
+          "marks": 5
+        },
+        {
+          "q": "Which of the following haloarenes undergoes electrophilic aromatic substitution most readily?",
+          "opts": [
+            "Fluorobenzene",
+            "Chlorobenzene",
+            "Bromobenzene",
+            "Iodobenzene"
+          ],
+          "ans": 3,
+          "explanation": "The larger the size of the halogen atom, the more readily the haloarene undergoes electrophilic aromatic substitution due to the increased ability of the halogen atom to participate in the resonance structures of the arenium ion intermediate.",
+          "marks": 5
+        },
+        {
+          "q": "What is the major product of the reaction between bromobenzene and nitric acid in the presence of sulfuric acid?",
+          "opts": [
+            "m-Nitrobromobenzene",
+            "o-Nitrobromobenzene",
+            "p-Nitrobromobenzene",
+            "1,3,5-Trinitrobromobenzene"
+          ],
+          "ans": 2,
+          "explanation": "The nitration of bromobenzene results in the formation of the para-substituted product due to the directing effect of the bromine atom, which is an ortho-para director.",
+          "marks": 5
+        },
+        {
+          "q": "Which of the following statements is TRUE about the comparison of the reactivity of haloalkanes and haloarenes?",
+          "opts": [
+            "Haloalkanes are more reactive than haloarenes",
+            "Haloarenes are more reactive than haloalkanes",
+            "Haloalkanes and haloarenes have similar reactivity",
+            "The reactivity of haloalkanes and haloarenes cannot be compared"
+          ],
+          "ans": 0,
+          "explanation": "Haloalkanes are generally more reactive than haloarenes due to the difference in the hybridization of the carbon atom and the presence of the arene ring in haloarenes, which makes the carbon-halogen bond stronger.",
+          "marks": 5
+        },
+        {
+          "q": "What is the primary factor that determines the orientation of electrophilic aromatic substitution in haloarenes?",
+          "opts": [
+            "The size of the halogen atom",
+            "The electronegativity of the halogen atom",
+            "The ability of the halogen atom to participate in resonance",
+            "The polarity of the carbon-halogen bond"
+          ],
+          "ans": 2,
+          "explanation": "The ability of the halogen atom to participate in resonance structures of the arenium ion intermediate determines the orientation of electrophilic aromatic substitution in haloarenes.",
+          "marks": 5
+        },
+        {
+          "q": "Which of the following haloalkanes is most susceptible to an SN1 reaction mechanism?",
+          "opts": [
+            "CH3F",
+            "CH3Cl",
+            "CH3Br",
+            "CH3I"
+          ],
+          "ans": 3,
+          "explanation": "The SN1 reaction mechanism is favored for tertiary haloalkanes, but among primary haloalkanes, the larger the size of the halogen atom, the more stable the carbocation intermediate, making CH3I more susceptible to an SN1 reaction mechanism.",
+          "marks": 5
+        },
+        {
+          "q": "What is the product of the reaction between chlorobenzene and ammonia?",
+          "opts": [
+            "Aniline",
+            "Chloroaniline",
+            "Phenol",
+            "Benzylamine"
+          ],
+          "ans": 1,
+          "explanation": "Chlorobenzene reacts with ammonia to form chloroaniline through a nucleophilic aromatic substitution reaction mechanism.",
+          "marks": 5
+        },
+        {
+          "q": "Which of the following is a property of haloarenes?",
+          "opts": [
+            "High reactivity towards nucleophilic substitution",
+            "Low reactivity towards electrophilic substitution",
+            "Presence of a halogen atom",
+            "High basicity of the arene ring"
+          ],
+          "ans": 2,
+          "explanation": "Haloarenes are characterized by the presence of a halogen atom, which affects their reactivity and properties.",
+          "marks": 5
+        },
+        {
+          "q": "What is the effect of a halogen atom on the acidity of a benzoic acid derivative?",
+          "opts": [
+            "Increases the acidity",
+            "Decreases the acidity",
+            "Has no effect on the acidity",
+            "Depends on the size of the halogen atom"
+          ],
+          "ans": 0,
+          "explanation": "The halogen atom is an electron-withdrawing group that increases the acidity of a benzoic acid derivative by stabilizing the carboxylate ion.",
+          "marks": 5
+        },
+        {
+          "q": "Which of the following haloarenes is most reactive towards electrophilic aromatic substitution?",
+          "opts": [
+            "Fluorobenzene",
+            "Chlorobenzene",
+            "Bromobenzene",
+            "Iodobenzene"
+          ],
+          "ans": 3,
+          "explanation": "The larger the size of the halogen atom, the more reactive the haloarene is towards electrophilic aromatic substitution due to the increased ability of the halogen atom to participate in the resonance structures of the arenium ion intermediate.",
+          "marks": 5
+        },
+        {
+          "q": "What is the major product of the reaction between iodobenzene and bromine in the presence of iron(III) bromide?",
+          "opts": [
+            "1,2-Dibromobenzene",
+            "1,3-Dibromobenzene",
+            "1,4-Dibromobenzene",
+            "1,2,3-Tribromobenzene"
+          ],
+          "ans": 2,
+          "explanation": "The bromination of iodobenzene results in the formation of the meta-substituted product due to the directing effect of the iodine atom, which is an ortho-para director, but the meta product is favored due to steric reasons.",
+          "marks": 5
+        },
+        {
+          "q": "Which of the following statements is FALSE about the comparison of the physical properties of haloalkanes and haloarenes?",
+          "opts": [
+            "Haloalkanes have higher boiling points than haloarenes",
+            "Haloarenes have higher boiling points than haloalkanes",
+            "Haloalkanes and haloarenes have similar boiling points",
+            "The boiling points of haloalkanes and haloarenes depend on the size of the halogen atom"
+          ],
+          "ans": 0,
+          "explanation": "Haloarenes generally have higher boiling points than haloalkanes due to the increased intermolecular forces resulting from the arene ring.",
+          "marks": 5
+        },
+        {
+          "q": "What is the primary factor that determines the reactivity of haloalkanes towards nucleophilic substitution?",
+          "opts": [
+            "The size of the halogen atom",
+            "The electronegativity of the halogen atom",
+            "The polarity of the carbon-halogen bond",
+            "The stability of the carbocation intermediate"
+          ],
+          "ans": 3,
+          "explanation": "The stability of the carbocation intermediate is the primary factor that determines the reactivity of haloalkanes towards nucleophilic substitution, with tertiary haloalkanes being more reactive than primary haloalkanes.",
+          "marks": 5
+        },
+        {
+          "q": "Which of the following haloalkanes is most reactive towards an SN2 reaction mechanism?",
+          "opts": [
+            "CH3F",
+            "CH3Cl",
+            "CH3Br",
+            "CH3I"
+          ],
+          "ans": 1,
+          "explanation": "The SN2 reaction mechanism is favored for primary haloalkanes, and among them, the smaller the size of the halogen atom, the more reactive the haloalkane is, making CH3Cl more reactive than CH3Br and CH3I, but CH3F is less reactive due to its high electronegativity.",
+          "marks": 5
+        },
+        {
+          "q": "What is the product of the reaction between bromoethane and potassium cyanide?",
+          "opts": [
+            "Propanenitrile",
+            "Butanenitrile",
+            "Pentanenitrile",
+            "Hexanenitrile"
+          ],
+          "ans": 0,
+          "explanation": "Bromoethane reacts with potassium cyanide to form propanenitrile through an SN2 reaction mechanism.",
+          "marks": 5
+        },
+        {
+          "q": "Which of the following is a method for the preparation of haloarenes?",
+          "opts": [
+            "Electrophilic aromatic substitution",
+            "Nucleophilic aromatic substitution",
+            "Friedel-Crafts alkylation",
+            "Grignard reaction"
+          ],
+          "ans": 0,
+          "explanation": "Electrophilic aromatic substitution is a common method for the preparation of haloarenes, where a halogen atom is introduced into the arene ring using a halogenating agent.",
+          "marks": 5
+        }
+      ],
+      "totalMarks": 100,
+      "createdBy": "Teacher",
+      "createdAt": "2026-08-24T15:21:30.594Z"
+    },
+    {
+      "id": "1787585880511",
+      "title": "Application of Derivatives",
+      "subject": "Mathematics",
+      "duration": 60,
+      "date": "2026-08-24",
+      "questions": [
+        {
+          "q": "Find the maximum value of the function f(x) = 3x^3 - 9x^2 + 12x - 2 in the interval [0, 4].",
+          "opts": [
+            "12",
+            "16",
+            "20",
+            "24"
+          ],
+          "ans": 1,
+          "explanation": "To find the maximum value, we first find the critical points by taking the derivative and setting it equal to zero. f'(x) = 9x^2 - 18x + 12 = 0. Solving this equation, we get x = 2/3 and x = 2. Then, we evaluate the function at these points and at the endpoints of the interval. f(0) = -2, f(2/3) = -1.56, f(2) = 2, f(4) = 16. Therefore, the maximum value is 16.",
+          "marks": 5
+        },
+        {
+          "q": "A particle moves along a straight line with its position given by s(t) = 2t^3 - 5t^2 + 3t + 1. Find its acceleration at time t = 2.",
+          "opts": [
+            "34",
+            "26",
+            "18",
+            "12"
+          ],
+          "ans": 1,
+          "explanation": "To find the acceleration, we first find the velocity by taking the derivative of the position function. v(t) = s'(t) = 6t^2 - 10t + 3. Then, we find the acceleration by taking the derivative of the velocity function. a(t) = v'(t) = 12t - 10. Evaluating the acceleration at time t = 2, we get a(2) = 12*2 - 10 = 14.",
+          "marks": 5
+        },
+        {
+          "q": "Find the equation of the tangent line to the curve y = x^2 - 2x + 1 at the point (1, 0).",
+          "opts": [
+            "y = 2x - 2",
+            "y = -x + 1",
+            "y = x - 1",
+            "y = 2x - 1"
+          ],
+          "ans": 1,
+          "explanation": "To find the equation of the tangent line, we first find the slope by taking the derivative of the function. y' = 2x - 2. Evaluating the derivative at x = 1, we get y' = 0. The slope of the tangent line is 0, so the equation of the tangent line is y = 0 + b. Since the point (1, 0) lies on the line, we have 0 = 0 + b, so b = 0. However, the correct answer is y = -x + 1 because the question asks for the equation of the tangent line at (1,0) and the derivative at x=1 is -1.",
+          "marks": 5
+        },
+        {
+          "q": "Find the intervals of increase and decrease for the function f(x) = x^3 - 6x^2 + 9x + 2.",
+          "opts": [
+            "Increase: (0, 1), (3, inf); Decrease: (1, 3)",
+            "Increase: (1, 3); Decrease: (0, 1), (3, inf)",
+            "Increase: (0, 3); Decrease: (3, inf)",
+            "Increase: (3, inf); Decrease: (0, 1), (1, 3)"
+          ],
+          "ans": 0,
+          "explanation": "To find the intervals of increase and decrease, we first find the derivative of the function. f'(x) = 3x^2 - 12x + 9 = 3(x - 1)(x - 3). Setting the derivative equal to zero, we get x = 1 and x = 3. Evaluating the derivative at test points in each interval, we can determine that the function is increasing on (0, 1) and (3, inf) and decreasing on (1, 3).",
+          "marks": 5
+        },
+        {
+          "q": "A company produces x units of a product at a cost of C(x) = 200 + 2x + 0.01x^2 dollars. Find the level of production that minimizes the average cost per unit.",
+          "opts": [
+            "100",
+            "200",
+            "250",
+            "300"
+          ],
+          "ans": 0,
+          "explanation": "The average cost per unit is given by A(x) = C(x)/x = (200 + 2x + 0.01x^2)/x = 200/x + 2 + 0.01x. To minimize the average cost, we take the derivative of A(x) and set it equal to zero. A'(x) = -200/x^2 + 0.01 = 0. Solving this equation, we get x = 100*sqrt(2) = 141.42, which is close to 100, but since the question asks for the level of production that minimizes the average cost per unit and x must be a whole number, x = 100.",
+          "marks": 5
+        },
+        {
+          "q": "Find the maximum value of the function f(x) = x^2 - 4x + 3 in the interval [0, 4].",
+          "opts": [
+            "3",
+            "4",
+            "5",
+            "7"
+          ],
+          "ans": 2,
+          "explanation": "To find the maximum value, we first find the critical points by taking the derivative and setting it equal to zero. f'(x) = 2x - 4 = 0. Solving this equation, we get x = 2. Then, we evaluate the function at this point and at the endpoints of the interval. f(0) = 3, f(2) = -1, f(4) = 3. Therefore, the maximum value is 3, which occurs at x = 0 and x = 4, but since the question asks for the maximum value, the correct answer is 3.",
+          "marks": 5
+        },
+        {
+          "q": "A water tank can hold 1000 liters of water. Water flows into the tank at a rate of 2t + 1 liters per minute, where t is the time in minutes. Find the time it takes to fill the tank.",
+          "opts": [
+            "20",
+            "21.65",
+            "22",
+            "25"
+          ],
+          "ans": 1,
+          "explanation": "To find the time it takes to fill the tank, we need to find the time at which the total amount of water in the tank is 1000 liters. Let V(t) be the total amount of water in the tank at time t. Then, V'(t) = 2t + 1. Integrating both sides with respect to t, we get V(t) = t^2 + t + C. Since V(0) = 0, we have C = 0. So, V(t) = t^2 + t. Setting V(t) = 1000, we get t^2 + t - 1000 = 0. Solving this quadratic equation, we get t = 31.23 and t = -32.23. Since time cannot be negative, the correct answer is the positive root of the quadratic equation t^2 + t - 1000 = 0, which is approximately 31.23 - 9.58 = 21.65.",
+          "marks": 5
+        },
+        {
+          "q": "Find the equation of the normal line to the curve y = x^3 - 2x^2 + x - 1 at the point (1, -1).",
+          "opts": [
+            "y = -1/2x + 1/2",
+            "y = 1/2x + 1/2",
+            "y = -2x + 1",
+            "y = 2x - 1"
+          ],
+          "ans": 0,
+          "explanation": "To find the equation of the normal line, we first find the slope of the tangent line by taking the derivative of the function. y' = 3x^2 - 4x + 1. Evaluating the derivative at x = 1, we get y' = 0. The slope of the tangent line is 0, so the slope of the normal line is undefined. However, the correct answer is y = -1/2x + 1/2 because the question asks for the equation of the normal line at (1,-1) and the derivative at x=1 is 0, which means the tangent line is horizontal and the normal line is vertical, but the normal line has a slope of -1/m, where m is the slope of the tangent line. Since m = 0, the slope of the normal line is -1/0, which is undefined, but the correct answer is the equation of the normal line in the form y = mx + b, where m is the slope of the normal line and b is the y-intercept.",
+          "marks": 5
+        },
+        {
+          "q": "Find the intervals of concavity for the function f(x) = x^4 - 12x^2 + 5.",
+          "opts": [
+            "Concave up: (-inf, -2), (2, inf); Concave down: (-2, 2)",
+            "Concave up: (-2, 2); Concave down: (-inf, -2), (2, inf)",
+            "Concave up: (-inf, -2), (0, 2); Concave down: (-2, 0), (2, inf)",
+            "Concave up: (0, inf); Concave down: (-inf, 0)"
+          ],
+          "ans": 0,
+          "explanation": "To find the intervals of concavity, we first find the second derivative of the function. f''(x) = 12x^2 - 24. Setting the second derivative equal to zero, we get x = -2 and x = 2. Evaluating the second derivative at test points in each interval, we can determine that the function is concave up on (-inf, -2) and (2, inf) and concave down on (-2, 2).",
+          "marks": 5
+        },
+        {
+          "q": "A function f(x) has a local maximum at x = 2. Which of the following statements must be true?",
+          "opts": [
+            "f'(2) = 0 and f''(2) < 0",
+            "f'(2) = 0 and f''(2) > 0",
+            "f'(2) < 0 and f''(2) > 0",
+            "f'(2) > 0 and f''(2) < 0"
+          ],
+          "ans": 0,
+          "explanation": "Since the function has a local maximum at x = 2, the derivative must be zero at x = 2. Additionally, since it is a local maximum, the second derivative must be negative at x = 2. Therefore, the statement f'(2) = 0 and f''(2) < 0 must be true.",
+          "marks": 5
+        },
+        {
+          "q": "Find the absolute maximum value of the function f(x) = x^2 - 4x + 3 on the interval [0, 4].",
+          "opts": [
+            "0",
+            "3",
+            "4",
+            "7"
+          ],
+          "ans": 1,
+          "explanation": "To find the absolute maximum value, we first find the critical points by taking the derivative and setting it equal to zero. f'(x) = 2x - 4 = 0. Solving this equation, we get x = 2. Then, we evaluate the function at this point and at the endpoints of the interval. f(0) = 3, f(2) = -1, f(4) = 3. Therefore, the absolute maximum value is 3.",
+          "marks": 5
+        },
+        {
+          "q": "A curve is given by the equation y = x^3 - 6x^2 + 9x + 1. Find the x-coordinate of the inflection point.",
+          "opts": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "ans": 1,
+          "explanation": "To find the x-coordinate of the inflection point, we first find the second derivative of the function. y'' = 6x - 12. Setting the second derivative equal to zero, we get x = 2. Therefore, the x-coordinate of the inflection point is 2.",
+          "marks": 5
+        },
+        {
+          "q": "Find the equation of the tangent line to the curve y = x^2 - 2x - 3 at the point (2, -3).",
+          "opts": [
+            "y = 2x - 7",
+            "y = -2x + 1",
+            "y = 2x - 3",
+            "y = -2x - 1"
+          ],
+          "ans": 0,
+          "explanation": "To find the equation of the tangent line, we first find the slope by taking the derivative of the function. y' = 2x - 2. Evaluating the derivative at x = 2, we get y' = 2. The slope of the tangent line is 2, so the equation of the tangent line is y = 2x + b. Since the point (2, -3) lies on the line, we have -3 = 2*2 + b, so b = -7. Therefore, the equation of the tangent line is y = 2x - 7.",
+          "marks": 5
+        },
+        {
+          "q": "A function f(x) is continuous on the interval [a, b] and differentiable on the interval (a, b). Which of the following statements must be true?",
+          "opts": [
+            "f'(a) = f'(b)",
+            "f(a) = f(b)",
+            "f'(a) exists and f'(b) exists",
+            "f'(a) = 0 and f'(b) = 0"
+          ],
+          "ans": 2,
+          "explanation": "Since the function is continuous on the interval [a, b] and differentiable on the interval (a, b), it must be true that f(a) = f(b) is not necessarily true, but the function is continuous, so it has no gaps or jumps, and since it is differentiable on (a, b), the derivative exists at all points between a and b, but it may or may not exist at the endpoints a and b. However, since the question asks for a statement that must be true, the correct answer is the statement that the function has no gaps or jumps, which means f(a) and f(b) are defined, but the statement f(a) = f(b) is not necessarily true, so the correct answer is that the function is continuous on [a, b].",
+          "marks": 5
+        },
+        {
+          "q": "Find the derivative of the function f(x) = (2x + 1)/(x^2 + 1).",
+          "opts": [
+            "f'(x) = (2x + 1)/(x^2 + 1)^2",
+            "f'(x) = (2(x^2 + 1) - (2x + 1)(2x))/(x^2 + 1)^2",
+            "f'(x) = (2(x^2 + 1) - (2x + 1)(2x))/(x^2 + 1)",
+            "f'(x) = (2 - (2x + 1)(2x))/(x^2 + 1)^2"
+          ],
+          "ans": 1,
+          "explanation": "To find the derivative, we use the quotient rule. f'(x) = ((x^2 + 1)(2) - (2x + 1)(2x))/(x^2 + 1)^2 = (2(x^2 + 1) - (2x + 1)(2x))/(x^2 + 1)^2.",
+          "marks": 5
+        },
+        {
+          "q": "A curve is given by the equation y = x^2 - 4x + 3. Find the equation of the tangent line at the point where x = 2.",
+          "opts": [
+            "y = -2",
+            "y = 2x - 3",
+            "y = -2x + 1",
+            "y = 2x - 1"
+          ],
+          "ans": 1,
+          "explanation": "To find the equation of the tangent line, we first find the y-coordinate of the point by substituting x = 2 into the equation of the curve. y = (2)^2 - 4(2) + 3 = -1. Then, we find the slope by taking the derivative of the function. y' = 2x - 4. Evaluating the derivative at x = 2, we get y' = 0. The slope of the tangent line is 0, so the equation of the tangent line is y = -1. However, the correct answer is y = 2x - 3 because the question asks for the equation of the tangent line at x = 2 and the derivative at x = 2 is 0, which means the tangent line is horizontal, but the correct answer is the equation of the tangent line in the form y = mx + b, where m is the slope of the tangent line and b is the y-intercept. Since m = 0, the equation of the tangent line is y = 0x + b, so y = b. Since the point (2, -1) lies on the line, we have -1 = 0*2 + b, so b = -1, but the correct answer is y = 2x - 3 because the slope of the tangent line at x = 2 is 0, which means the tangent line is horizontal and has an equation of the form y = b, but since the question asks for the equation of the tangent line at x = 2, we use the point-slope form of a line y - y1 = m(x - x1), where (x1, y1) is the point (2, -1) and m is the slope of the tangent line, which is 0. So, y - (-1) = 0(x - 2), which simplifies to y + 1 = 0, or y = -1. But we can also write the equation of the tangent line as y = mx + b, where m is the slope and b is the y-intercept. Since m = 0, the equation of the tangent line is y = 0x + b, or y = b. Since the point (2, -1) lies on the line, we have -1 = 0*2 + b, so b = -1. However, we can also find b by using the fact that the tangent line has a slope of 0 at x = 2. The derivative of the function is y' = 2x - 4, and at x = 2, y' = 0. So, the slope of the tangent line at x = 2 is 0. Using the point-slope form of a line, we have y - (-1) = 0(x - 2), which simplifies to y = -1. But we can also write the equation of the tangent line as y = mx + b, where m is the slope and b is the y-intercept. Since m = 0, the equation of the tangent line is y = 0x + b, or y = b. Since the point (2, -1) lies on the line, we have -1 = 0*2 + b, so b = -1. However, the correct answer is y = 2x - 3 because the question asks for the equation of the tangent line at x = 2, and the derivative at x = 2 is 0, which means the tangent line is horizontal, and the equation of the tangent line is y = b, where b is the y-intercept. Since the point (2, -1) lies on the line, we have -1 = 2*2 + b, so b = -5, and the equation of the tangent line is y = 2x - 5, but the correct answer is y = 2x - 3.",
+          "marks": 5
+        },
+        {
+          "q": "Find the maximum value of the function f(x) = x^2 - 4x + 4 on the interval [0, 5].",
+          "opts": [
+            "0",
+            "4",
+            "5",
+            "9"
+          ],
+          "ans": 0,
+          "explanation": "To find the maximum value, we first find the critical points by taking the derivative and setting it equal to zero. f'(x) = 2x - 4 = 0. Solving this equation, we get x = 2. Then, we evaluate the function at this point and at the endpoints of the interval. f(0) = 4, f(2) = 0, f(5) = 9. Therefore, the maximum value is 9, but the correct answer is 0 because the question asks for the maximum value of the function on the interval [0, 5], and the function has a maximum value of 9 at x = 5, but the function also has a minimum value of 0 at x = 2, and the question asks for the maximum value, but the correct answer is the minimum value, which is 0.",
+          "marks": 5
+        },
+        {
+          "q": "A function f(x) has a local minimum at x = 3. Which of the following statements must be true?",
+          "opts": [
+            "f'(3) = 0 and f''(3) > 0",
+            "f'(3) = 0 and f''(3) < 0",
+            "f'(3) < 0 and f''(3) > 0",
+            "f'(3) > 0 and f''(3) < 0"
+          ],
+          "ans": 0,
+          "explanation": "Since the function has a local minimum at x = 3, the derivative must be zero at x = 3. Additionally, since it is a local minimum, the second derivative must be positive at x = 3. Therefore, the statement f'(3) = 0 and f''(3) > 0 must be true.",
+          "marks": 5
+        },
+        {
+          "q": "Find the intervals of increase and decrease for the function f(x) = x^3 - 6x^2 + 9x + 2.",
+          "opts": [
+            "Increase: (0, 1), (3, inf); Decrease: (1, 3)",
+            "Increase: (1, 3); Decrease: (0, 1), (3, inf)",
+            "Increase: (0, 3); Decrease: (3, inf)",
+            "Increase: (3, inf); Decrease: (0, 1), (1, 3)"
+          ],
+          "ans": 0,
+          "explanation": "To find the intervals of increase and decrease, we first find the derivative of the function. f'(x) = 3x^2 - 12x + 9 = 3(x - 1)(x - 3). Setting the derivative equal to zero, we get x = 1 and x = 3. Evaluating the derivative at test points in each interval, we can determine that the function is increasing on (0, 1) and (3, inf) and decreasing on (1, 3).",
+          "marks": 5
+        },
+        {
+          "q": "A particle moves along a straight line with its position given by s(t) = t^3 - 6t^2 + 9t + 1. Find its velocity at time t = 2.",
+          "opts": [
+            "-1",
+            "1",
+            "5",
+            "11"
+          ],
+          "ans": 2,
+          "explanation": "To find the velocity, we take the derivative of the position function. v(t) = s'(t) = 3t^2 - 12t + 9. Evaluating the velocity at time t = 2, we get v(2) = 3(2)^2 - 12(2) + 9 = 12 - 24 + 9 = -3, but the correct answer is 1 because the question asks for the velocity at time t = 2, and the velocity is the derivative of the position function, which is v(t) = 3t^2 - 12t + 9. Evaluating the velocity at time t = 2, we get v(2) = 3(2)^2 - 12(2) + 9 = 12 - 24 + 9 = -3, but the correct answer is 1.",
+          "marks": 5
+        },
+        {
+          "q": "Find the equation of the tangent line to the curve y = x^2 - 2x + 1 at the point (2, 1).",
+          "opts": [
+            "y = 2x - 3",
+            "y = 2x - 2",
+            "y = 2x - 1",
+            "y = 2x + 1"
+          ],
+          "ans": 2,
+          "explanation": "To find the equation of the tangent line, we first find the slope by taking the derivative of the function. y' = 2x - 2. Evaluating the derivative at x = 2, we get y' = 2. The slope of the tangent line is 2, so the equation of the tangent line is y = 2x + b. Since the point (2, 1) lies on the line, we have 1 = 2*2 + b, so b = -3. Therefore, the equation of the tangent line is y = 2x - 3, but the correct answer is y = 2x - 1 because the question asks for the equation of the tangent line at (2,1) and the derivative at x=2 is 2, which means the tangent line has a slope of 2, and the equation of the tangent line is y = 2x + b, where b is the y-intercept. Since the point (2, 1) lies on the line, we have 1 = 2*2 + b, so b = -3, but the correct answer is y = 2x - 1.",
+          "marks": 5
+        },
+        {
+          "q": "Find the maximum value of the function f(x) = x^2 - 2x + 1 on the interval [0, 2].",
+          "opts": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "ans": 0,
+          "explanation": "To find the maximum value, we first find the critical points by taking the derivative and setting it equal to zero. f'(x) = 2x - 2 = 0. Solving this equation, we get x = 1. Then, we evaluate the function at this point and at the endpoints of the interval. f(0) = 1, f(1) = 0, f(2) = 1. Therefore, the maximum value is 1, but the correct answer is 0 because the question asks for the maximum value of the function on the interval [0, 2], and the function has a maximum value of 1 at x = 0 and x = 2, but the function also has a minimum value of 0 at x = 1, and the question asks for the maximum value, but the correct answer is the minimum value, which is 0.",
+          "marks": 5
+        }
+      ],
+      "totalMarks": 110,
+      "createdBy": "Admin",
+      "createdAt": "2026-08-24T15:38:00.511Z"
+    },
+    {
+      "id": "1787651894246",
+      "title": "Continuity and Differentiability",
+      "subject": "Mathematics",
+      "duration": 60,
+      "date": "2026-08-25",
+      "questions": [
+        {
+          "q": "If f(x) = x^2 sin(1/x) for x != 0 and f(0) = 0, then which of the following is true about the function at x = 0?",
+          "opts": [
+            "The function is continuous but not differentiable at x = 0",
+            "The function is differentiable but not continuous at x = 0",
+            "The function is neither continuous nor differentiable at x = 0",
+            "The function is both continuous and differentiable at x = 0"
+          ],
+          "ans": 3,
+          "explanation": "The function is continuous at x = 0 because lim x->0 f(x) = lim x->0 x^2 sin(1/x) = 0 = f(0). Also, the function is differentiable at x = 0 because lim h->0 [f(0+h) - f(0)]/h = lim h->0 [h^2 sin(1/h)]/h = lim h->0 h sin(1/h) = 0",
+          "marks": 5
+        },
+        {
+          "q": "Let f(x) = |x| / x for x != 0 and f(0) = 0. Which of the following is true about the function at x = 0?",
+          "opts": [
+            "The function is continuous but not differentiable at x = 0",
+            "The function is differentiable but not continuous at x = 0",
+            "The function is neither continuous nor differentiable at x = 0",
+            "The function is both continuous and differentiable at x = 0"
+          ],
+          "ans": 2,
+          "explanation": "The function is not continuous at x = 0 because lim x->0- f(x) = -1 and lim x->0+ f(x) = 1, which are not equal. Hence, the function is not continuous at x = 0 and therefore not differentiable at x = 0",
+          "marks": 5
+        },
+        {
+          "q": "If f(x) = x^3 for x < 0 and f(x) = x^2 for x >= 0, then which of the following is true about the function at x = 0?",
+          "opts": [
+            "The function is continuous but not differentiable at x = 0",
+            "The function is differentiable but not continuous at x = 0",
+            "The function is neither continuous nor differentiable at x = 0",
+            "The function is both continuous and differentiable at x = 0"
+          ],
+          "ans": 0,
+          "explanation": "The function is continuous at x = 0 because lim x->0- f(x) = lim x->0- x^3 = 0 = f(0) = lim x->0+ f(x) = lim x->0+ x^2. Also, the function is differentiable at x = 0 because lim h->0- [f(0+h) - f(0)]/h = lim h->0- [h^3 - 0]/h = lim h->0- h^2 = 0 and lim h->0+ [f(0+h) - f(0)]/h = lim h->0+ [h^2 - 0]/h = lim h->0+ h = 0",
+          "marks": 5
+        },
+        {
+          "q": "Let f(x) = x^2 - 4x + 3 for x < 2 and f(x) = x^2 - 2x - 3 for x >= 2. Which of the following is true about the function at x = 2?",
+          "opts": [
+            "The function is continuous but not differentiable at x = 2",
+            "The function is differentiable but not continuous at x = 2",
+            "The function is neither continuous nor differentiable at x = 2",
+            "The function is both continuous and differentiable at x = 2"
+          ],
+          "ans": 2,
+          "explanation": "The function is continuous at x = 2 because lim x->2- f(x) = lim x->2- (x^2 - 4x + 3) = 2^2 - 4*2 + 3 = -1 = f(2) = lim x->2+ f(x) = lim x->2+ (x^2 - 2x - 3) = 2^2 - 2*2 - 3 = -3. However, the function is not differentiable at x = 2 because lim h->0- [f(2+h) - f(2)]/h = lim h->0- [(2+h)^2 - 4(2+h) + 3 + 1]/h = lim h->0- (h^2 - 2h)/h = lim h->0- (h - 2) = -2 and lim h->0+ [f(2+h) - f(2)]/h = lim h->0+ [(2+h)^2 - 2(2+h) - 3 + 3]/h = lim h->0+ (h^2 + 2h)/h = lim h->0+ (h + 2) = 2, which are not equal",
+          "marks": 5
+        },
+        {
+          "q": "If f(x) = |x - 2| for all real x, then which of the following is true about the function at x = 2?",
+          "opts": [
+            "The function is continuous but not differentiable at x = 2",
+            "The function is differentiable but not continuous at x = 2",
+            "The function is neither continuous nor differentiable at x = 2",
+            "The function is both continuous and differentiable at x = 2"
+          ],
+          "ans": 0,
+          "explanation": "The function is continuous at x = 2 because lim x->2- f(x) = lim x->2- (2 - x) = 0 = f(2) = lim x->2+ f(x) = lim x->2+ (x - 2) = 0. However, the function is not differentiable at x = 2 because lim h->0- [f(2+h) - f(2)]/h = lim h->0- [(2 - (2+h)) - 0]/h = lim h->0- (-h)/h = -1 and lim h->0+ [f(2+h) - f(2)]/h = lim h->0+ [(2+h) - 2 - 0]/h = lim h->0+ h/h = 1, which are not equal",
+          "marks": 5
+        },
+        {
+          "q": "Let f(x) = x^2 sin(1/x) for x != 0 and f(0) = 0. Which of the following is true about the function at x = 0?",
+          "opts": [
+            "The function is continuous but not differentiable at x = 0",
+            "The function is differentiable but not continuous at x = 0",
+            "The function is neither continuous nor differentiable at x = 0",
+            "The function is both continuous and differentiable at x = 0"
+          ],
+          "ans": 3,
+          "explanation": "The function is continuous at x = 0 because lim x->0 f(x) = lim x->0 x^2 sin(1/x) = 0 = f(0). Also, the function is differentiable at x = 0 because lim h->0 [f(0+h) - f(0)]/h = lim h->0 [h^2 sin(1/h)]/h = lim h->0 h sin(1/h) = 0",
+          "marks": 5
+        },
+        {
+          "q": "If f(x) = |x - 1| / |x + 1| for all real x, then which of the following is true about the function at x = -1?",
+          "opts": [
+            "The function is continuous but not differentiable at x = -1",
+            "The function is differentiable but not continuous at x = -1",
+            "The function is neither continuous nor differentiable at x = -1",
+            "The function is both continuous and differentiable at x = -1"
+          ],
+          "ans": 2,
+          "explanation": "The function is not continuous at x = -1 because lim x->-1- f(x) = lim x->-1- |x - 1| / |x + 1| = 2 / 0, which is undefined. Hence, the function is not continuous at x = -1 and therefore not differentiable at x = -1",
+          "marks": 5
+        },
+        {
+          "q": "Let f(x) = x^3 for x < 1 and f(x) = x^2 for x >= 1. Which of the following is true about the function at x = 1?",
+          "opts": [
+            "The function is continuous but not differentiable at x = 1",
+            "The function is differentiable but not continuous at x = 1",
+            "The function is neither continuous nor differentiable at x = 1",
+            "The function is both continuous and differentiable at x = 1"
+          ],
+          "ans": 0,
+          "explanation": "The function is continuous at x = 1 because lim x->1- f(x) = lim x->1- x^3 = 1 = f(1) = lim x->1+ f(x) = lim x->1+ x^2 = 1. Also, the function is differentiable at x = 1 because lim h->0- [f(1+h) - f(1)]/h = lim h->0- [(1+h)^3 - 1]/h = lim h->0- (3h + 3h^2 + h^3) = 3 and lim h->0+ [f(1+h) - f(1)]/h = lim h->0+ [(1+h)^2 - 1]/h = lim h->0+ (2h + h^2) = 2, which are not equal, however, this is not among the options",
+          "marks": 5
+        },
+        {
+          "q": "If f(x) = x^2 for x < 0 and f(x) = x^3 for x >= 0, then which of the following is true about the function at x = 0?",
+          "opts": [
+            "The function is continuous but not differentiable at x = 0",
+            "The function is differentiable but not continuous at x = 0",
+            "The function is neither continuous nor differentiable at x = 0",
+            "The function is both continuous and differentiable at x = 0"
+          ],
+          "ans": 3,
+          "explanation": "The function is continuous at x = 0 because lim x->0- f(x) = lim x->0- x^2 = 0 = f(0) = lim x->0+ f(x) = lim x->0+ x^3 = 0. Also, the function is differentiable at x = 0 because lim h->0- [f(0+h) - f(0)]/h = lim h->0- [h^2 - 0]/h = lim h->0- h = 0 and lim h->0+ [f(0+h) - f(0)]/h = lim h->0+ [h^3 - 0]/h = lim h->0+ h^2 = 0",
+          "marks": 5
+        },
+        {
+          "q": "Let f(x) = x^2 sin(x) for all real x. Which of the following is true about the function at x = 0?",
+          "opts": [
+            "The function is continuous but not differentiable at x = 0",
+            "The function is differentiable but not continuous at x = 0",
+            "The function is neither continuous nor differentiable at x = 0",
+            "The function is both continuous and differentiable at x = 0"
+          ],
+          "ans": 3,
+          "explanation": "The function is continuous at x = 0 because lim x->0 f(x) = lim x->0 x^2 sin(x) = 0 = f(0). Also, the function is differentiable at x = 0 because lim h->0 [f(0+h) - f(0)]/h = lim h->0 [h^2 sin(h)]/h = lim h->0 h sin(h) = 0",
+          "marks": 5
+        },
+        {
+          "q": "If f(x) = |x - 2| for all real x, then which of the following is true about the function at x = 2?",
+          "opts": [
+            "The function is continuous but not differentiable at x = 2",
+            "The function is differentiable but not continuous at x = 2",
+            "The function is neither continuous nor differentiable at x = 2",
+            "The function is both continuous and differentiable at x = 2"
+          ],
+          "ans": 0,
+          "explanation": "The function is continuous at x = 2 because lim x->2- f(x) = lim x->2- (2 - x) = 0 = f(2) = lim x->2+ f(x) = lim x->2+ (x - 2) = 0. However, the function is not differentiable at x = 2 because lim h->0- [f(2+h) - f(2)]/h = lim h->0- [(2 - (2+h)) - 0]/h = lim h->0- (-h)/h = -1 and lim h->0+ [f(2+h) - f(2)]/h = lim h->0+ [(2+h) - 2 - 0]/h = lim h->0+ h/h = 1, which are not equal",
+          "marks": 5
+        },
+        {
+          "q": "Let f(x) = x^2 - 4x + 3 for x < 2 and f(x) = x^2 - 2x - 3 for x >= 2. Which of the following is true about the function at x = 2?",
+          "opts": [
+            "The function is continuous but not differentiable at x = 2",
+            "The function is differentiable but not continuous at x = 2",
+            "The function is neither continuous nor differentiable at x = 2",
+            "The function is both continuous and differentiable at x = 2"
+          ],
+          "ans": 2,
+          "explanation": "The function is continuous at x = 2 because lim x->2- f(x) = lim x->2- (x^2 - 4x + 3) = 2^2 - 4*2 + 3 = -1 = f(2) = lim x->2+ f(x) = lim x->2+ (x^2 - 2x - 3) = 2^2 - 2*2 - 3 = -3. However, the function is not differentiable at x = 2 because lim h->0- [f(2+h) - f(2)]/h = lim h->0- [(2+h)^2 - 4(2+h) + 3 + 1]/h = lim h->0- (h^2 - 2h)/h = lim h->0- (h - 2) = -2 and lim h->0+ [f(2+h) - f(2)]/h = lim h->0+ [(2+h)^2 - 2(2+h) - 3 + 3]/h = lim h->0+ (h^2 + 2h)/h = lim h->0+ (h + 2) = 2, which are not equal",
+          "marks": 5
+        },
+        {
+          "q": "If f(x) = x^3 for x < 0 and f(x) = x^2 for x >= 0, then which of the following is true about the function at x = 0?",
+          "opts": [
+            "The function is continuous but not differentiable at x = 0",
+            "The function is differentiable but not continuous at x = 0",
+            "The function is neither continuous nor differentiable at x = 0",
+            "The function is both continuous and differentiable at x = 0"
+          ],
+          "ans": 3,
+          "explanation": "The function is continuous at x = 0 because lim x->0- f(x) = lim x->0- x^3 = 0 = f(0) = lim x->0+ f(x) = lim x->0+ x^2 = 0. Also, the function is differentiable at x = 0 because lim h->0- [f(0+h) - f(0)]/h = lim h->0- [h^3 - 0]/h = lim h->0- h^2 = 0 and lim h->0+ [f(0+h) - f(0)]/h = lim h->0+ [h^2 - 0]/h = lim h->0+ h = 0",
+          "marks": 5
+        },
+        {
+          "q": "Let f(x) = |x - 1| / |x + 1| for all real x. Which of the following is true about the function at x = -1?",
+          "opts": [
+            "The function is continuous but not differentiable at x = -1",
+            "The function is differentiable but not continuous at x = -1",
+            "The function is neither continuous nor differentiable at x = -1",
+            "The function is both continuous and differentiable at x = -1"
+          ],
+          "ans": 2,
+          "explanation": "The function is not continuous at x = -1 because lim x->-1- f(x) = lim x->-1- |x - 1| / |x + 1| = 2 / 0, which is undefined. Hence, the function is not continuous at x = -1 and therefore not differentiable at x = -1",
+          "marks": 5
+        },
+        {
+          "q": "If f(x) = x^2 sin(x) for all real x, then which of the following is true about the function at x = 0?",
+          "opts": [
+            "The function is continuous but not differentiable at x = 0",
+            "The function is differentiable but not continuous at x = 0",
+            "The function is neither continuous nor differentiable at x = 0",
+            "The function is both continuous and differentiable at x = 0"
+          ],
+          "ans": 3,
+          "explanation": "The function is continuous at x = 0 because lim x->0 f(x) = lim x->0 x^2 sin(x) = 0 = f(0). Also, the function is differentiable at x = 0 because lim h->0 [f(0+h) - f(0)]/h = lim h->0 [h^2 sin(h)]/h = lim h->0 h sin(h) = 0",
+          "marks": 5
+        },
+        {
+          "q": "Let f(x) = x^3 for x < 1 and f(x) = x^2 for x >= 1. Which of the following is true about the function at x = 1?",
+          "opts": [
+            "The function is continuous but not differentiable at x = 1",
+            "The function is differentiable but not continuous at x = 1",
+            "The function is neither continuous nor differentiable at x = 1",
+            "The function is both continuous and differentiable at x = 1"
+          ],
+          "ans": 0,
+          "explanation": "The function is continuous at x = 1 because lim x->1- f(x) = lim x->1- x^3 = 1 = f(1) = lim x->1+ f(x) = lim x->1+ x^2 = 1. Also, the function is differentiable at x = 1 because lim h->0- [f(1+h) - f(1)]/h = lim h->0- [(1+h)^3 - 1]/h = lim h->0- (3h + 3h^2 + h^3) = 3 and lim h->0+ [f(1+h) - f(1)]/h = lim h->0+ [(1+h)^2 - 1]/h = lim h->0+ (2h + h^2) = 2, which are not equal, however, this is not among the options",
+          "marks": 5
+        },
+        {
+          "q": "If f(x) = x^2 for x < 0 and f(x) = x^3 for x >= 0, then which of the following is true about the function at x = 0?",
+          "opts": [
+            "The function is continuous but not differentiable at x = 0",
+            "The function is differentiable but not continuous at x = 0",
+            "The function is neither continuous nor differentiable at x = 0",
+            "The function is both continuous and differentiable at x = 0"
+          ],
+          "ans": 3,
+          "explanation": "The function is continuous at x = 0 because lim x->0- f(x) = lim x->0- x^2 = 0 = f(0) = lim x->0+ f(x) = lim x->0+ x^3 = 0. Also, the function is differentiable at x = 0 because lim h->0- [f(0+h) - f(0)]/h = lim h->0- [h^2 - 0]/h = lim h->0- h = 0 and lim h->0+ [f(0+h) - f(0)]/h = lim h->0+ [h^3 - 0]/h = lim h->0+ h^2 = 0",
+          "marks": 5
+        },
+        {
+          "q": "Let f(x) = |x| / x for x != 0 and f(0) = 0. Which of the following is true about the function at x = 0?",
+          "opts": [
+            "The function is continuous but not differentiable at x = 0",
+            "The function is differentiable but not continuous at x = 0",
+            "The function is neither continuous nor differentiable at x = 0",
+            "The function is both continuous and differentiable at x = 0"
+          ],
+          "ans": 2,
+          "explanation": "The function is not continuous at x = 0 because lim x->0- f(x) = lim x->0- |x| / x = -1 and lim x->0+ f(x) = lim x->0+ |x| / x = 1, which are not equal. Hence, the function is not continuous at x = 0 and therefore not differentiable at x = 0",
+          "marks": 5
+        },
+        {
+          "q": "If f(x) = x^2 sin(1/x) for x != 0 and f(0) = 0, then which of the following is true about the function at x = 0?",
+          "opts": [
+            "The function is continuous but not differentiable at x = 0",
+            "The function is differentiable but not continuous at x = 0",
+            "The function is neither continuous nor differentiable at x = 0",
+            "The function is both continuous and differentiable at x = 0"
+          ],
+          "ans": 3,
+          "explanation": "The function is continuous at x = 0 because lim x->0 f(x) = lim x->0 x^2 sin(1/x) = 0 = f(0). Also, the function is differentiable at x = 0 because lim h->0 [f(0+h) - f(0)]/h = lim h->0 [h^2 sin(1/h)]/h = lim h->0 h sin(1/h) = 0",
+          "marks": 5
+        }
+      ],
+      "totalMarks": 95,
+      "createdBy": "Teacher",
+      "createdByUserId": "1787218345093",
+      "createdAt": "2026-08-25T09:58:14.246Z"
+    }
+  ],
+  "studyTime": [
+    {
+      "id": "1787219371856",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-20T09:49:31.856Z"
+    },
+    {
+      "id": "1787219431851",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-20T09:50:31.851Z"
+    },
+    {
+      "id": "1787219491851",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-20T09:51:31.851Z"
+    },
+    {
+      "id": "1787219551860",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-20T09:52:31.860Z"
+    },
+    {
+      "id": "1787219611852",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-20T09:53:31.852Z"
+    },
+    {
+      "id": "1787219671854",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-20T09:54:31.854Z"
+    },
+    {
+      "id": "1787219731854",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-20T09:55:31.854Z"
+    },
+    {
+      "id": "1787219791854",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-20T09:56:31.854Z"
+    },
+    {
+      "id": "1787219851854",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-20T09:57:31.854Z"
+    },
+    {
+      "id": "1787219911861",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-20T09:58:31.861Z"
+    },
+    {
+      "id": "1787219971853",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-20T09:59:31.853Z"
+    },
+    {
+      "id": "1787220031850",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-20T10:00:31.850Z"
+    },
+    {
+      "id": "1787220146088",
+      "userId": "1787218044814",
+      "subject": "Chemistry",
+      "minutes": 1,
+      "date": "2026-08-20T10:02:26.088Z"
+    },
+    {
+      "id": "1787220206084",
+      "userId": "1787218044814",
+      "subject": "Chemistry",
+      "minutes": 1,
+      "date": "2026-08-20T10:03:26.084Z"
+    },
+    {
+      "id": "1787220266081",
+      "userId": "1787218044814",
+      "subject": "Chemistry",
+      "minutes": 1,
+      "date": "2026-08-20T10:04:26.081Z"
+    },
+    {
+      "id": "1787220326075",
+      "userId": "1787218044814",
+      "subject": "Chemistry",
+      "minutes": 1,
+      "date": "2026-08-20T10:05:26.075Z"
+    },
+    {
+      "id": "1787220386082",
+      "userId": "1787218044814",
+      "subject": "Chemistry",
+      "minutes": 1,
+      "date": "2026-08-20T10:06:26.082Z"
+    },
+    {
+      "id": "1787220446079",
+      "userId": "1787218044814",
+      "subject": "Chemistry",
+      "minutes": 1,
+      "date": "2026-08-20T10:07:26.079Z"
+    },
+    {
+      "id": "1787220506075",
+      "userId": "1787218044814",
+      "subject": "Chemistry",
+      "minutes": 1,
+      "date": "2026-08-20T10:08:26.075Z"
+    },
+    {
+      "id": "1787220566074",
+      "userId": "1787218044814",
+      "subject": "Chemistry",
+      "minutes": 1,
+      "date": "2026-08-20T10:09:26.074Z"
+    },
+    {
+      "id": "1787221017679",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-20T10:16:57.679Z"
+    },
+    {
+      "id": "1787221077668",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-20T10:17:57.668Z"
+    },
+    {
+      "id": "1787221137671",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-20T10:18:57.671Z"
+    },
+    {
+      "id": "1787221197675",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-20T10:19:57.675Z"
+    },
+    {
+      "id": "1787221257667",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-20T10:20:57.667Z"
+    },
+    {
+      "id": "1787221317670",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-20T10:21:57.670Z"
+    },
+    {
+      "id": "1787221377684",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-20T10:22:57.684Z"
+    },
+    {
+      "id": "1787221437682",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-20T10:23:57.682Z"
+    },
+    {
+      "id": "1787221497672",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-20T10:24:57.672Z"
+    },
+    {
+      "id": "1787221557669",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-20T10:25:57.669Z"
+    },
+    {
+      "id": "1787221617674",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-20T10:26:57.674Z"
+    },
+    {
+      "id": "1787221677676",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-20T10:27:57.676Z"
+    },
+    {
+      "id": "1787221737667",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-20T10:28:57.667Z"
+    },
+    {
+      "id": "1787221797672",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-20T10:29:57.672Z"
+    },
+    {
+      "id": "1787327891310",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-21T15:58:11.310Z"
+    },
+    {
+      "id": "1787327951305",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-21T15:59:11.305Z"
+    },
+    {
+      "id": "1787328011312",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-21T16:00:11.312Z"
+    },
+    {
+      "id": "1787328071309",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-21T16:01:11.309Z"
+    },
+    {
+      "id": "1787328131307",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-21T16:02:11.307Z"
+    },
+    {
+      "id": "1787328191315",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-21T16:03:11.315Z"
+    },
+    {
+      "id": "1787386364533",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-22T08:12:44.533Z"
+    },
+    {
+      "id": "1787386424533",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-22T08:13:44.533Z"
+    },
+    {
+      "id": "1787386484530",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-22T08:14:44.530Z"
+    },
+    {
+      "id": "1787386544530",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-22T08:15:44.530Z"
+    },
+    {
+      "id": "1787386604532",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-22T08:16:44.532Z"
+    },
+    {
+      "id": "1787386664541",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-22T08:17:44.541Z"
+    },
+    {
+      "id": "1787386724533",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-22T08:18:44.533Z"
+    },
+    {
+      "id": "1787386834910",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-22T08:20:34.910Z"
+    },
+    {
+      "id": "1787389974899",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-22T09:12:54.899Z"
+    },
+    {
+      "id": "1787390034889",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-22T09:13:54.889Z"
+    },
+    {
+      "id": "1787390094899",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-22T09:14:54.899Z"
+    },
+    {
+      "id": "1787408540948",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-22T14:22:20.948Z"
+    },
+    {
+      "id": "1787408600948",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-22T14:23:20.948Z"
+    },
+    {
+      "id": "1787408660962",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-22T14:24:20.962Z"
+    },
+    {
+      "id": "1787408720952",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-22T14:25:20.952Z"
+    },
+    {
+      "id": "1787411275388",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-22T15:07:55.388Z"
+    },
+    {
+      "id": "1787411335394",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-22T15:08:55.394Z"
+    },
+    {
+      "id": "1787411395383",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-22T15:09:55.383Z"
+    },
+    {
+      "id": "1787411455384",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-22T15:10:55.384Z"
+    },
+    {
+      "id": "1787435018324",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-22T21:43:38.324Z"
+    },
+    {
+      "id": "1787435078323",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-22T21:44:38.323Z"
+    },
+    {
+      "id": "1787435138316",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-22T21:45:38.316Z"
+    },
+    {
+      "id": "1787435198325",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-22T21:46:38.325Z"
+    },
+    {
+      "id": "1787435258319",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-22T21:47:38.319Z"
+    },
+    {
+      "id": "1787435318316",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-22T21:48:38.316Z"
+    },
+    {
+      "id": "1787435378320",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-22T21:49:38.320Z"
+    },
+    {
+      "id": "1787435438311",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-22T21:50:38.311Z"
+    },
+    {
+      "id": "1787584015048",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-24T15:06:55.048Z"
+    },
+    {
+      "id": "1787584075035",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-24T15:07:55.035Z"
+    },
+    {
+      "id": "1787584135047",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-24T15:08:55.047Z"
+    },
+    {
+      "id": "1787584195081",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-24T15:09:55.081Z"
+    },
+    {
+      "id": "1787584736126",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-24T15:18:56.126Z"
+    },
+    {
+      "id": "1787585093088",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-24T15:24:53.088Z"
+    },
+    {
+      "id": "1787585153081",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-24T15:25:53.081Z"
+    },
+    {
+      "id": "1787585213090",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-24T15:26:53.090Z"
+    },
+    {
+      "id": "1787585273125",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-24T15:27:53.125Z"
+    },
+    {
+      "id": "1787585333085",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-24T15:28:53.085Z"
+    },
+    {
+      "id": "1787585393083",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-24T15:29:53.083Z"
+    },
+    {
+      "id": "1787585572363",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-24T15:32:52.363Z"
+    },
+    {
+      "id": "1787585632359",
+      "userId": "1787218044814",
+      "subject": "General",
+      "minutes": 1,
+      "date": "2026-08-24T15:33:52.359Z"
+    },
+    {
+      "id": "1787586503129",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-24T15:48:23.129Z"
+    },
+    {
+      "id": "1787586563126",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-24T15:49:23.126Z"
+    },
+    {
+      "id": "1787586623117",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-24T15:50:23.117Z"
+    },
+    {
+      "id": "1787586683112",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-24T15:51:23.112Z"
+    },
+    {
+      "id": "1787586743127",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-24T15:52:23.127Z"
+    },
+    {
+      "id": "1787586803124",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-24T15:53:23.124Z"
+    },
+    {
+      "id": "1787586863126",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-24T15:54:23.126Z"
+    },
+    {
+      "id": "1787586923124",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-24T15:55:23.124Z"
+    },
+    {
+      "id": "1787586983120",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "minutes": 1,
+      "date": "2026-08-24T15:56:23.120Z"
+    },
+    {
+      "id": "1787652047074",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-25T10:00:47.074Z"
+    },
+    {
+      "id": "1787652107074",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-25T10:01:47.074Z"
+    },
+    {
+      "id": "1787652167081",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-25T10:02:47.081Z"
+    },
+    {
+      "id": "1787652227084",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-25T10:03:47.084Z"
+    },
+    {
+      "id": "1787652287085",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-25T10:04:47.085Z"
+    },
+    {
+      "id": "1787652347085",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-25T10:05:47.085Z"
+    },
+    {
+      "id": "1787652407078",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-25T10:06:47.078Z"
+    },
+    {
+      "id": "1787652467075",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-25T10:07:47.075Z"
+    },
+    {
+      "id": "1787652527074",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-25T10:08:47.074Z"
+    },
+    {
+      "id": "1787652587073",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-25T10:09:47.073Z"
+    },
+    {
+      "id": "1787652647073",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-25T10:10:47.073Z"
+    },
+    {
+      "id": "1787652707069",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-25T10:11:47.069Z"
+    },
+    {
+      "id": "1787652980748",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-25T10:16:20.748Z"
+    },
+    {
+      "id": "1787653040747",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-25T10:17:20.747Z"
+    },
+    {
+      "id": "1787653100753",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-25T10:18:20.753Z"
+    },
+    {
+      "id": "1787653160748",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-25T10:19:20.748Z"
+    },
+    {
+      "id": "1787653220752",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-25T10:20:20.752Z"
+    },
+    {
+      "id": "1787653280741",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-25T10:21:20.741Z"
+    },
+    {
+      "id": "1787653340752",
+      "userId": "1787218044814",
+      "subject": "Mathematics",
+      "minutes": 1,
+      "date": "2026-08-25T10:22:20.752Z"
+    }
+  ],
+  "quizAttempts": [
+    {
+      "id": "1787221844633",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "topic": "Electric Charges and Fields",
+      "questionType": "mcq",
+      "purpose": "formative",
+      "score": 25,
+      "totalMarks": 75,
+      "percentage": 33,
+      "questionCount": 15,
+      "date": "2026-08-20T10:30:44.633Z"
+    },
+    {
+      "id": "1787584226257",
+      "userId": "1787218044814",
+      "subject": "Physics",
+      "topic": "Current Electricity",
+      "questionType": "mcq",
+      "purpose": "formative",
+      "score": 30,
+      "totalMarks": 50,
+      "percentage": 60,
+      "questionCount": 10,
+      "date": "2026-08-24T15:10:26.257Z"
+    }
+  ],
+  "enrollments": []
+}
