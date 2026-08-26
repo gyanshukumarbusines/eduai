@@ -2591,6 +2591,7 @@ function AuthReal({ nav, setRole, setUser, C }) {
 function AIPrediction({ nav, C, sbProps }) {
   const [targetExam, setTargetExam] = useState("JEE Mains");
   const [stream, setStream] = useState("Science");
+  const [classNumber, setClassNumber] = useState("10");
   const [classLevel, setClassLevel] = useState("Class 12");
   const [loading, setLoading] = useState(false);
   const [prediction, setPrediction] = useState(null);
@@ -2687,29 +2688,48 @@ function AIPrediction({ nav, C, sbProps }) {
     }
   };
 
+    // Classes 1-10 don't have streams in the Indian system — only 11/12 do.
+  // These are generic default subject sets for Classes 1-10 (no stream picker
+  // needed at all for these).
+  const genericSubjects = {
+    "1": { Mathematics:75, English:80, Hindi:78, EVS:82 },
+    "2": { Mathematics:75, English:80, Hindi:78, EVS:82 },
+    "3": { Mathematics:75, English:80, Hindi:78, EVS:82 },
+    "4": { Mathematics:75, English:80, Hindi:78, EVS:82 },
+    "5": { Mathematics:75, English:80, Hindi:78, EVS:82 },
+    "6": { Mathematics:75, Science:78, "Social Science":72, English:80, Hindi:78 },
+    "7": { Mathematics:75, Science:78, "Social Science":72, English:80, Hindi:78 },
+    "8": { Mathematics:75, Science:78, "Social Science":72, English:80, Hindi:78 },
+    "9": { Mathematics:78, Science:72, "Social Science":68, English:83, Hindi:75 },
+    "10": { Mathematics:78, Science:72, "Social Science":68, English:83, Hindi:75 },
+  };
   const hasSteams = ["CBSE Boards","State Board"].includes(targetExam);
   const streams = ["Science","Commerce","Arts"];
-  const classes = stream === "Science"
-  ? ["Class 10","Class 11 PCM","Class 11 PCM with CS","Class 11 PCM with Biology","Class 11 PCB","Class 11 PCB with CS","Class 11 PCB with Mathematics","Class 12 PCM","Class 12 PCM with CS","Class 12 PCM with Biology","Class 12 PCB","Class 12 PCB with CS","Class 12 PCB with Mathematics"]
+  const classNumbers = Array.from({length:12},(_,i)=>String(i+1));
+  const classVariants = stream === "Science"
+  ? ["Class 11 PCM","Class 11 PCM with CS","Class 11 PCM with Biology","Class 11 PCB","Class 11 PCB with CS","Class 11 PCB with Mathematics","Class 12 PCM","Class 12 PCM with CS","Class 12 PCM with Biology","Class 12 PCB","Class 12 PCB with CS","Class 12 PCB with Mathematics"]
   : stream === "Commerce"
-  ? ["Class 10","Class 11 with Maths","Class 11 without Maths","Class 12 with Maths","Class 12 without Maths"]
-  : stream === "Arts"
-  ? ["Class 10","Class 11 with Sociology","Class 11 without Sociology","Class 12 with Sociology","Class 12 without Sociology"]
-  : ["Class 10","Class 11","Class 12"];
+  ? ["Class 11 with Maths","Class 11 without Maths","Class 12 with Maths","Class 12 without Maths"]
+  : ["Class 11 with Sociology","Class 11 without Sociology","Class 12 with Sociology","Class 12 without Sociology"];
+  // Only show variants for the currently selected class number (11 or 12)
+  const classes = classVariants.filter(c => c.startsWith(`Class ${classNumber}`));
   const exams = ["JEE Mains","JEE Advanced","NEET","UPSC","CBSE Boards","State Board"];
 
- const computeSubjectsFor = (exam, str, cls) => {
+ const computeSubjectsFor = (exam, classNum, str, cls) => {
   try {
-    const examUsesSteams = ["CBSE Boards","State Board"].includes(exam);
-    if (examUsesSteams) {
-      const streamData = examSubjects[exam]?.[str];
-      if (!streamData) return { Mathematics:78, English:83 };
-      const classData = streamData[cls];
-      if (!classData) {
-        const firstClass = Object.keys(streamData)[0];
-        return streamData[firstClass] || { Mathematics:78, English:83 };
+    const examUsesBoardStructure = ["CBSE Boards","State Board"].includes(exam);
+    if (examUsesBoardStructure) {
+      if (["11","12"].includes(classNum)) {
+        const streamData = examSubjects[exam]?.[str];
+        if (!streamData) return genericSubjects[classNum] || { Mathematics:78, English:83 };
+        const classData = streamData[cls];
+        if (!classData) {
+          const firstMatch = Object.keys(streamData).find(k => k.startsWith(`Class ${classNum}`));
+          return streamData[firstMatch] || genericSubjects[classNum] || { Mathematics:78, English:83 };
+        }
+        return classData;
       }
-      return classData;
+      return genericSubjects[classNum] || { Mathematics:78, English:83 };
     }
     return examSubjects[exam] || { Mathematics:78, English:83 };
   } catch(e) {
@@ -2717,7 +2737,7 @@ function AIPrediction({ nav, C, sbProps }) {
   }
 };
 
- const getCurrentSubjects = () => computeSubjectsFor(targetExam, stream, classLevel);
+ const getCurrentSubjects = () => computeSubjectsFor(targetExam, classNumber, stream, classLevel);
   const [localSubjects, setLocalSubjects] = useState({});
 
 const getDisplaySubjects = () => {
@@ -2728,8 +2748,8 @@ const getDisplaySubjects = () => {
   // Pre-fill sliders with the student's real exam/quiz averages wherever a
   // subject name matches (case-insensitive) — starting point is real
   // performance, but sliders stay fully adjustable for what-if scenarios.
-  const updateSubjects = (exam, str, cls) => {
-  const base = computeSubjectsFor(exam, str, cls);
+  const updateSubjects = (exam, classNum, str, cls) => {
+  const base = computeSubjectsFor(exam, classNum, str, cls);
   const overrides = {};
   Object.keys(base).forEach(subj => {
     const match = Object.keys(realSubjectAverages).find(r => r.toLowerCase() === subj.toLowerCase());
@@ -2739,9 +2759,9 @@ const getDisplaySubjects = () => {
 };
 
   useEffect(() => {
-    if (Object.keys(realSubjectAverages).length > 0) updateSubjects(targetExam, stream, classLevel);
+    if (Object.keys(realSubjectAverages).length > 0) updateSubjects(targetExam, classNumber, stream, classLevel);
   }, [myScores.length]);
-
+  
   const predict = async () => {
   setLoading(true); setPrediction(null);
   try {
@@ -2772,14 +2792,17 @@ const getDisplaySubjects = () => {
           <div>
             <Card C={C} style={{ marginBottom:18 }}>
               <H3 C={C}>Target Exam</H3>
-              <div style={{ display:"flex", flexWrap:"wrap", gap:8, marginBottom:16 }}>
+                            <div style={{ display:"flex", flexWrap:"wrap", gap:8, marginBottom:16 }}>
                 {exams.map(e => (
                   <button key={e} style={{ whiteSpace:"nowrap" }} onClick={() => {
   setTargetExam(e);
   setStream("Science");
-  const newClass = ["CBSE Boards","State Board"].includes(e) ? "Class 12 PCM with CS" : "Class 12";
+  const isBoard = ["CBSE Boards","State Board"].includes(e);
+  const newClassNum = isBoard ? "10" : "12";
+  setClassNumber(newClassNum);
+  const newClass = isBoard ? "" : "Class 12";
   setClassLevel(newClass);
-  updateSubjects(e, "Science", newClass);
+  updateSubjects(e, newClassNum, "Science", newClass);
   setPrediction(null); setLocalSubjects({});
 }}
                     style={{ padding:"8px 16px", borderRadius:20, fontSize:13, cursor:"pointer", whiteSpace:"nowrap", background:targetExam===e?`${C.accent}20`:"transparent", border:`1px solid ${targetExam===e?C.accent:C.border}`, color:targetExam===e?C.accent:C.sub }}>{e}
@@ -2789,46 +2812,72 @@ const getDisplaySubjects = () => {
 
               {hasSteams && (
                 <>
-                  <H3 C={C}>Select Stream</H3>
-                  <div style={{ display:"flex", gap:8, marginBottom:16 }}>
-                    {streams.map(s => (
-                      <button key={s} onClick={() => {
-  setStream(s);
-  const newClass = s === "Science" ? "Class 12 PCM with CS"
-    : s === "Commerce" ? "Class 12 with Maths"
-    : "Class 12 with Sociology";
-  setClassLevel(newClass);
-  updateSubjects(targetExam, s, newClass);
+                  <H3 C={C}>Select Class</H3>
+                  <div style={{ display:"flex", flexWrap:"wrap", gap:8, marginBottom:16 }}>
+                    {classNumbers.map(n => (
+                      <button key={n} onClick={() => {
+  setClassNumber(n);
+  if (["11","12"].includes(n)) {
+    const newClass = `Class ${n} PCM with CS`;
+    setStream("Science");
+    setClassLevel(newClass);
+    updateSubjects(targetExam, n, "Science", newClass);
+  } else {
+    setClassLevel("");
+    updateSubjects(targetExam, n, stream, "");
+  }
   setPrediction(null); setLocalSubjects({});
 }}
-                        style={{ flex:1, padding:"9px 4px", borderRadius:10, border:`1px solid ${stream===s?C.accent:C.border}`, background:stream===s?`${C.accent}18`:"transparent", color:stream===s?C.accent:C.sub, fontSize:13, cursor:"pointer", fontWeight:stream===s?600:400, textAlign:"center" }}>
-                        {s==="Science"?"🔬":s==="Commerce"?"💼":"🎨"} {s}
+                        style={{ width:44, padding:"9px 0", borderRadius:10, border:`1px solid ${classNumber===n?C.gold:C.border}`, background:classNumber===n?`${C.gold}18`:"transparent", color:classNumber===n?C.gold:C.sub, fontSize:13, cursor:"pointer", fontWeight:classNumber===n?600:400, textAlign:"center" }}>
+                        {n}
                       </button>
                     ))}
                   </div>
 
-                  <H3 C={C}>Select Class</H3>
-                  <div style={{ display:"flex", flexWrap:"wrap", gap:8, marginBottom:16 }}>
-                    {classes.map(cls => (
-                      <button key={cls} onClick={() => { setClassLevel(cls); updateSubjects(targetExam,stream,cls); setPrediction(null); setLocalSubjects({}); }}
-                        style={{ padding:"9px 12px", borderRadius:10, border:`1px solid ${classLevel===cls?C.gold:C.border}`, background:classLevel===cls?`${C.gold}18`:"transparent", color:classLevel===cls?C.gold:C.sub, fontSize:13, cursor:"pointer", whiteSpace:"nowrap", fontWeight:classLevel===cls?600:400, textAlign:"center" }}>
-                        {cls}
-                      </button>
-                    ))}
-                  </div>
+                  {["11","12"].includes(classNumber) && (
+                    <>
+                      <H3 C={C}>Select Stream</H3>
+                      <div style={{ display:"flex", gap:8, marginBottom:16 }}>
+                        {streams.map(s => (
+                          <button key={s} onClick={() => {
+  setStream(s);
+  const newClass = s === "Science" ? `Class ${classNumber} PCM with CS`
+    : s === "Commerce" ? `Class ${classNumber} with Maths`
+    : `Class ${classNumber} with Sociology`;
+  setClassLevel(newClass);
+  updateSubjects(targetExam, classNumber, s, newClass);
+  setPrediction(null); setLocalSubjects({});
+}}
+                            style={{ flex:1, padding:"9px 4px", borderRadius:10, border:`1px solid ${stream===s?C.accent:C.border}`, background:stream===s?`${C.accent}18`:"transparent", color:stream===s?C.accent:C.sub, fontSize:13, cursor:"pointer", fontWeight:stream===s?600:400, textAlign:"center" }}>
+                            {s==="Science"?"🔬":s==="Commerce"?"💼":"🎨"} {s}
+                          </button>
+                        ))}
+                      </div>
+
+                      <H3 C={C}>Select Details</H3>
+                      <div style={{ display:"flex", flexWrap:"wrap", gap:8, marginBottom:16 }}>
+                        {classes.map(cls => (
+                          <button key={cls} onClick={() => { setClassLevel(cls); updateSubjects(targetExam,classNumber,stream,cls); setPrediction(null); setLocalSubjects({}); }}
+                            style={{ padding:"9px 12px", borderRadius:10, border:`1px solid ${classLevel===cls?C.gold:C.border}`, background:classLevel===cls?`${C.gold}18`:"transparent", color:classLevel===cls?C.gold:C.sub, fontSize:13, cursor:"pointer", whiteSpace:"nowrap", fontWeight:classLevel===cls?600:400, textAlign:"center" }}>
+                            {cls}
+                          </button>
+                        ))}
+                      </div>
+                    </>
+                  )}
                 </>
               )}
 
               <H3 C={C}>Your Current Scores (%)</H3>
               <div style={{ marginBottom:18 }}>
-                <ResponsiveContainer width="100%" height={240}>
-                  <RadarChart data={subjectList.map(sub => ({ sub, score: getDisplaySubjects()[sub] }))} outerRadius="65%" margin={{ top:20, right:40, bottom:20, left:40 }}>
-                     <PolarGrid stroke={C.border} />
-                     <PolarAngleAxis dataKey="sub" tick={{ fill:C.sub, fontSize:11 }} />
-                     <Radar name="Score" dataKey="score" stroke={C.accent} fill={C.accent} fillOpacity={0.25} strokeWidth={2} />
-                 </RadarChart>
-               </ResponsiveContainer>
-                {Object.keys(realSubjectAverages).length > 0 && <div style={{ fontSize:11, color:C.sub, textAlign:"center", marginTop:4 }}>Pre-filled from your real exam & quiz history where available — drag sliders below for what-if scenarios.</div>}
+                <ResponsiveContainer width="100%" height={260}>
+                  <RadarChart data={subjectList.map(sub => ({ sub, score: getDisplaySubjects()[sub] }))} outerRadius="55%" margin={{ top:20, right:60, bottom:20, left:60 }}>
+                    <PolarGrid stroke={C.border} />
+                    <PolarAngleAxis dataKey="sub" tick={{ fill:C.sub, fontSize:10 }} />
+                    <Radar name="Score" dataKey="score" stroke={C.accent} fill={C.accent} fillOpacity={0.25} strokeWidth={2} />
+                  </RadarChart>
+                </ResponsiveContainer>
+              {Object.keys(realSubjectAverages).length > 0 && <div style={{ fontSize:11, color:C.sub, textAlign:"center", marginTop:4 }}>Pre-filled from your real exam & quiz history where available — drag sliders below for what-if scenarios.</div>}
               </div>
               {subjectList.map(sub => (
                 <div key={sub} style={{ marginBottom:14 }}>
