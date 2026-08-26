@@ -2768,13 +2768,13 @@ const getDisplaySubjects = () => {
       <Sidebar {...sbProps} current="prediction" />
       <div style={{ flex:1, padding:"26px 30px", overflowY:"auto" }}>
         <PageHeader title="📊 AI Performance Prediction" sub="Enter your current scores — AI predicts your exam rank and gives personalized advice" C={C} />
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 1.5fr", gap:20 }}>
+        <div style={{ display:"grid", gridTemplateColumns:"minmax(340px, 1fr) 1.5fr", gap:20 }}>
           <div>
             <Card C={C} style={{ marginBottom:18 }}>
               <H3 C={C}>Target Exam</H3>
               <div style={{ display:"flex", flexWrap:"wrap", gap:8, marginBottom:16 }}>
                 {exams.map(e => (
-                  <button key={e} onClick={() => {
+                  <button key={e} style={{ whiteSpace:"nowrap" }} onClick={() => {
   setTargetExam(e);
   setStream("Science");
   const newClass = ["CBSE Boards","State Board"].includes(e) ? "Class 12 PCM with CS" : "Class 12";
@@ -2782,7 +2782,7 @@ const getDisplaySubjects = () => {
   updateSubjects(e, "Science", newClass);
   setPrediction(null); setLocalSubjects({});
 }}
-                    style={{ padding:"8px 16px", borderRadius:20, fontSize:13, cursor:"pointer", background:targetExam===e?`${C.accent}20`:"transparent", border:`1px solid ${targetExam===e?C.accent:C.border}`, color:targetExam===e?C.accent:C.sub }}>{e}
+                    style={{ padding:"8px 16px", borderRadius:20, fontSize:13, cursor:"pointer", whiteSpace:"nowrap", background:targetExam===e?`${C.accent}20`:"transparent", border:`1px solid ${targetExam===e?C.accent:C.border}`, color:targetExam===e?C.accent:C.sub }}>{e}
                   </button>
                 ))}
               </div>
@@ -2808,10 +2808,10 @@ const getDisplaySubjects = () => {
                   </div>
 
                   <H3 C={C}>Select Class</H3>
-                  <div style={{ display:"flex", gap:8, marginBottom:16 }}>
+                  <div style={{ display:"flex", flexWrap:"wrap", gap:8, marginBottom:16 }}>
                     {classes.map(cls => (
                       <button key={cls} onClick={() => { setClassLevel(cls); updateSubjects(targetExam,stream,cls); setPrediction(null); setLocalSubjects({}); }}
-                        style={{ flex:1, padding:"9px 4px", borderRadius:10, border:`1px solid ${classLevel===cls?C.gold:C.border}`, background:classLevel===cls?`${C.gold}18`:"transparent", color:classLevel===cls?C.gold:C.sub, fontSize:13, cursor:"pointer", fontWeight:classLevel===cls?600:400, textAlign:"center" }}>
+                        style={{ padding:"9px 12px", borderRadius:10, border:`1px solid ${classLevel===cls?C.gold:C.border}`, background:classLevel===cls?`${C.gold}18`:"transparent", color:classLevel===cls?C.gold:C.sub, fontSize:13, cursor:"pointer", whiteSpace:"nowrap", fontWeight:classLevel===cls?600:400, textAlign:"center" }}>
                         {cls}
                       </button>
                     ))}
