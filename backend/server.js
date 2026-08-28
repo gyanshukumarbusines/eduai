@@ -207,7 +207,11 @@ app.post("/api/chat", async (req, res) => {
   try {
     const result = await callAI(req.body.messages, req.body.max_tokens || 1024);
     console.log("[CHAT]", result.text.substring(0, 150));
-    res.json({ result: { response: result.text } });
+    res.json({
+  result: result.text,
+  text: result.text,
+  response: result.text
+});
   } catch(e) {
     console.log("[CHAT ERROR]", e.message);
     res.json({ error: e.message });
