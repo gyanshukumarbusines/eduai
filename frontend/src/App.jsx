@@ -86,7 +86,7 @@ function NotifDrawer({ open, onClose, C }) {
   const userId = (() => { try { return JSON.parse(localStorage.getItem("eduai_user")||"{}").id; } catch { return null; }})();
   useEffect(() => {
     if (!open || !userId) return;
-    fetch(`http://localhost:3001/api/notifications/${userId}`)
+    fetch(`https://eduai-urgj.onrender.com/api/notifications/${userId}`)
       .then(r => r.json())
       .then(d => setNotifications(d.notifications || []))
       .catch(() => setNotifications([]));
@@ -223,7 +223,7 @@ function PageHeader({ title, sub, C, children }) {
 function Landing({ nav, C }) {
   const [liveStudents, setLiveStudents] = useState(null);
   useEffect(() => {
-    fetch("http://localhost:3001/api/admin/stats")
+    fetch("https://eduai-urgj.onrender.com/api/admin/stats")
       .then(r=>r.json())
       .then(d => { if (d.totalStudents !== undefined) setLiveStudents(d.totalStudents); })
       .catch(()=>{});
@@ -362,7 +362,7 @@ function StudentDash({ nav, C, sbProps }) {
   useEffect(() => {
     const uid = (() => { try { return JSON.parse(localStorage.getItem("eduai_user")||"{}").id; } catch { return null; }})();
     if (!uid) return;
-    fetch(`http://localhost:3001/api/enrollments/${uid}`)
+    fetch(`https://eduai-urgj.onrender.com/api/enrollments/${uid}`)
       .then(r=>r.json())
       .then(d => setEnrolledCount((d.enrollments||[]).length))
       .catch(()=>{});
@@ -373,12 +373,12 @@ function StudentDash({ nav, C, sbProps }) {
    const [classRank, setClassRank] = useState(null);
   const [totalRankedStudents, setTotalRankedStudents] = useState(0);
   useEffect(() => {
-    fetch("http://localhost:3001/api/exams").then(r=>r.json()).then(d=>setSavedExams(d.exams||[])).catch(()=>{});
+    fetch("https://eduai-urgj.onrender.com/api/exams").then(r=>r.json()).then(d=>setSavedExams(d.exams||[])).catch(()=>{});
     if (userId) {
-      fetch(`http://localhost:3001/api/scores/${userId}`).then(r=>r.json()).then(d=>setMyScores(d.scores||[])).catch(()=>{});
-      fetch(`http://localhost:3001/api/study-time/${userId}`).then(r=>r.json()).then(d=>setStudyEntries(d.entries||[])).catch(()=>{});
+      fetch(`https://eduai-urgj.onrender.com/api/scores/${userId}`).then(r=>r.json()).then(d=>setMyScores(d.scores||[])).catch(()=>{});
+      fetch(`https://eduai-urgj.onrender.com/api/study-time/${userId}`).then(r=>r.json()).then(d=>setStudyEntries(d.entries||[])).catch(()=>{});
     }
-    fetch("http://localhost:3001/api/leaderboard").then(r=>r.json()).then(d => {
+    fetch("https://eduai-urgj.onrender.com/api/leaderboard").then(r=>r.json()).then(d => {
       const board = d.leaderboard || [];
       setTotalRankedStudents(board.length);
       const idx = board.findIndex(s => s.id === userId);
@@ -568,7 +568,7 @@ function Courses({ nav, C, sbProps }) {
   const userId = (() => { try { return JSON.parse(localStorage.getItem("eduai_user")||"{}").id; } catch { return null; }})();
   useEffect(() => {
     if (!userId) return;
-    fetch(`http://localhost:3001/api/enrollments/${userId}`)
+    fetch(`https://eduai-urgj.onrender.com/api/enrollments/${userId}`)
       .then(r=>r.json())
       .then(d => {
         const map = {};
@@ -610,7 +610,7 @@ function Courses({ nav, C, sbProps }) {
     const userId = (() => { try { return JSON.parse(localStorage.getItem("eduai_user")||"{}").id; } catch { return null; }})();
     if (!userId) return;
     const interval = setInterval(() => {
-      fetch("http://localhost:3001/api/study-time", {
+      fetch("https://eduai-urgj.onrender.com/api/study-time", {
         method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({ userId, subject: selected.cat, minutes: 1 })
       }).catch(()=>{});
@@ -687,7 +687,7 @@ function Courses({ nav, C, sbProps }) {
                 ) : (
                   <BP onClick={() => {
                     setEnrolled(e=>({...e,[c.title]:true}));
-                    if (userId) fetch("http://localhost:3001/api/enroll", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ userId, courseTitle: c.title }) }).catch(()=>{});
+                    if (userId) fetch("https://eduai-urgj.onrender.com/api/enroll", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ userId, courseTitle: c.title }) }).catch(()=>{});
                     alert(`✅ Successfully enrolled in "${c.title}"!`);
                   }} C={C} style={{ width:"100%", justifyContent:"center", marginBottom:12 }}>
                     <Play size={14} /> {c.free ? "Start Free Now" : "Enroll Now"}
@@ -780,7 +780,7 @@ function AITutor({ nav, C, sbProps }) {
     const userId = (() => { try { return JSON.parse(localStorage.getItem("eduai_user")||"{}").id; } catch { return null; }})();
     if (!userId) return;
     const interval = setInterval(() => {
-      fetch("http://localhost:3001/api/study-time", {
+      fetch("https://eduai-urgj.onrender.com/api/study-time", {
         method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({ userId, subject: subject === "All Subjects" ? "General" : subject, minutes: 1 })
       }).catch(()=>{});
@@ -794,7 +794,7 @@ function AITutor({ nav, C, sbProps }) {
   setMessages(m => [...m, u]); setMsg(""); setLoading(true);
   try {
     const response = await fetch(
-      "http://localhost:3001/api/chat",
+      "https://eduai-urgj.onrender.com/api/chat",
       {
         method: "POST",
         headers: {
@@ -832,7 +832,7 @@ function AITutor({ nav, C, sbProps }) {
   setPracticeQs([]);
   setSelectedAns({});
   try {
-    const res = await fetch("http://localhost:3001/api/generate-exam", {
+    const res = await fetch("https://eduai-urgj.onrender.com/api/generate-exam", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -979,7 +979,7 @@ function Exam({ nav, C, sbProps }) {
   const [examTimeLeft, setExamTimeLeft] = useState(30*60);
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/exams")
+    fetch("https://eduai-urgj.onrender.com/api/exams")
       .then(r => r.json())
       .then(data => setSavedExams(data.exams || []))
       .catch(() => setSavedExams([]));
@@ -997,7 +997,7 @@ function Exam({ nav, C, sbProps }) {
     const userId = (() => { try { return JSON.parse(localStorage.getItem("eduai_user")||"{}").id; } catch { return null; }})();
     if (!userId) return;
     const interval = setInterval(() => {
-      fetch("http://localhost:3001/api/study-time", {
+      fetch("https://eduai-urgj.onrender.com/api/study-time", {
         method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({ userId, subject: selectedExam.subject || "General", minutes: 1 })
       }).catch(()=>{});
@@ -1013,7 +1013,7 @@ function Exam({ nav, C, sbProps }) {
     const scoreEarned = Math.round(correctCount * marksPerQ);
     const userId = (() => { try { return JSON.parse(localStorage.getItem("eduai_user")||"{}").id; } catch { return null; }})();
     if (!userId) return;
-    fetch("http://localhost:3001/api/scores", {
+    fetch("https://eduai-urgj.onrender.com/api/scores", {
       method:"POST", headers:{"Content-Type":"application/json"},
       body: JSON.stringify({
         userId,
@@ -1146,7 +1146,7 @@ function Exam({ nav, C, sbProps }) {
                   <div style={{ display:"flex", gap:8 }}>
                     <button onClick={async()=>{
                       if(!window.confirm("Delete this exam?"))return;
-                      await fetch(`http://localhost:3001/api/exams/${exam.id}`,{method:"DELETE"});
+                      await fetch(`https://eduai-urgj.onrender.com/api/exams/${exam.id}`,{method:"DELETE"});
                       setSavedExams(s=>s.filter(e=>e.id!==exam.id));
                     }} style={{ background:`${C.red}18`, border:`1px solid ${C.red}40`, color:C.red, borderRadius:8, padding:"8px 14px", fontSize:13, cursor:"pointer" }}>🗑 Delete</button>
                     <BP onClick={() => { setSelectedExam(exam); setExamAnswers({}); setExamSubmitted(false); setExamCur(0); }} C={C}>Start Exam →</BP>
@@ -1173,7 +1173,7 @@ function Leaderboard({ nav, C, sbProps }) {
   const [realStudents, setRealStudents] = useState([]);
   useEffect(() => {
     const q = filter === "Overall" ? "" : `?subject=${encodeURIComponent(filter)}`;
-    fetch(`http://localhost:3001/api/leaderboard${q}`)
+    fetch(`https://eduai-urgj.onrender.com/api/leaderboard${q}`)
       .then(r => r.json())
       .then(d => setRealStudents(d.leaderboard || []))
       .catch(() => {});
@@ -1304,7 +1304,7 @@ function StudyPlanner({ nav, C, sbProps }) {
     let strongSubjects = ["Computer Sci.", "Mathematics"];
     if (userId) {
       try {
-        const scoresRes = await fetch(`http://localhost:3001/api/scores/${userId}`);
+        const scoresRes = await fetch(`https://eduai-urgj.onrender.com/api/scores/${userId}`);
         const scoresData = await scoresRes.json();
         const scores = scoresData.scores || [];
         if (scores.length > 0) {
@@ -1326,7 +1326,7 @@ function StudyPlanner({ nav, C, sbProps }) {
         }
       } catch(e) {}
     }
-    const res = await fetch("http://localhost:3001/api/chat", {
+    const res = await fetch("https://eduai-urgj.onrender.com/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -1425,7 +1425,7 @@ function Analytics({ nav, C, sbProps }) {
   const userId = (() => { try { return JSON.parse(localStorage.getItem("eduai_user")||"{}").id; } catch { return null; }})();
 
   useEffect(() => {
-    if (userId) fetch(`http://localhost:3001/api/scores/${userId}`).then(r=>r.json()).then(d=>setMyScores(d.scores||[])).catch(()=>{});
+    if (userId) fetch(`https://eduai-urgj.onrender.com/api/scores/${userId}`).then(r=>r.json()).then(d=>setMyScores(d.scores||[])).catch(()=>{});
   }, [userId]);
 
   const bySubject = {};
@@ -1472,7 +1472,7 @@ function Analytics({ nav, C, sbProps }) {
     setLoadingRecs(true);
     const subjectsObj = {};
     subjectAverages.forEach(s => { subjectsObj[s.subject] = s.avg; });
-    fetch("http://localhost:3001/api/predict", {
+    fetch("https://eduai-urgj.onrender.com/api/predict", {
       method:"POST", headers:{"Content-Type":"application/json"},
       body: JSON.stringify({ subjects: subjectsObj, targetExam: "General" })
     }).then(r=>r.json()).then(data => {
@@ -1577,8 +1577,8 @@ function TeacherPortal({ nav, C, sbProps, tab: initialTab }) {
   const [realStudents, setRealStudents] = useState([]);
   const [realExams, setRealExams] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3001/api/leaderboard").then(r=>r.json()).then(d=>setRealStudents(d.leaderboard||[])).catch(()=>{});
-    fetch("http://localhost:3001/api/exams").then(r=>r.json()).then(d=>setRealExams(d.exams||[])).catch(()=>{});
+    fetch("https://eduai-urgj.onrender.com/api/leaderboard").then(r=>r.json()).then(d=>setRealStudents(d.leaderboard||[])).catch(()=>{});
+    fetch("https://eduai-urgj.onrender.com/api/exams").then(r=>r.json()).then(d=>setRealExams(d.exams||[])).catch(()=>{});
   }, []);
   const totalStudents = realStudents.length || 155;
   const avgScore = realStudents.length ? Math.round(realStudents.reduce((a,s)=>a+s.avgScore,0)/realStudents.length) : 74.8;
@@ -1587,7 +1587,7 @@ function TeacherPortal({ nav, C, sbProps, tab: initialTab }) {
     if (!examTitle.trim()) { alert("Please enter exam title!"); return; }
     setCreatingExam(true);
     try {
-      const res = await fetch("http://localhost:3001/api/generate-exam", {
+      const res = await fetch("https://eduai-urgj.onrender.com/api/generate-exam", {
         method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({ subject: examSubject, topic: examTitle, difficulty: examDifficulty, count: examQCount })
       });
@@ -1596,7 +1596,7 @@ function TeacherPortal({ nav, C, sbProps, tab: initialTab }) {
       let start = raw.indexOf("["), end = raw.lastIndexOf("]");
       const qs = JSON.parse(raw.substring(start, end+1));
       const teacherUserId = (() => { try { return JSON.parse(localStorage.getItem("eduai_user")||"{}").id; } catch { return null; }})();
-      await fetch("http://localhost:3001/api/save-exam",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({title:examTitle,subject:examSubject,duration:examDuration,date:examDate,questions:qs,totalMarks:qs.length*5,createdBy:"Teacher",createdByUserId:teacherUserId})});alert(`✅ Exam "${examTitle}" created with ${qs.length} questions and saved! Students can now see it in Examinations page.`);
+      await fetch("https://eduai-urgj.onrender.com/api/save-exam",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({title:examTitle,subject:examSubject,duration:examDuration,date:examDate,questions:qs,totalMarks:qs.length*5,createdBy:"Teacher",createdByUserId:teacherUserId})});alert(`✅ Exam "${examTitle}" created with ${qs.length} questions and saved! Students can now see it in Examinations page.`);
       setExamTitle("");
     } catch(e) {
       alert("Failed to create exam. Please try again!");
@@ -1762,7 +1762,7 @@ function AdminDash({ nav, C, sbProps, tab: initialTab }) {
   const [tab, setTab] = useState(initialTab || "students");
   const [adminStats, setAdminStats] = useState(null);
   useEffect(()=>{
-    fetch("http://localhost:3001/api/admin/stats")
+    fetch("https://eduai-urgj.onrender.com/api/admin/stats")
       .then(r=>r.json())
       .then(d=>setAdminStats(d))
       .catch(()=>{});
@@ -1776,21 +1776,21 @@ function AdminDash({ nav, C, sbProps, tab: initialTab }) {
   const [adminCreating, setAdminCreating] = useState(false);
   const [realExams, setRealExams] = useState([]);
   useEffect(()=>{
-  fetch("http://localhost:3001/api/exams")
+  fetch("https://eduai-urgj.onrender.com/api/exams")
     .then(r=>r.json())
     .then(d=>setRealExams(d.exams||[]))
     .catch(()=>{});
 },[]);
 const [dbStudents, setDbStudents] = useState([]);
 useEffect(()=>{
-  fetch("http://localhost:3001/api/leaderboard")
+  fetch("https://eduai-urgj.onrender.com/api/leaderboard")
     .then(r=>r.json())
     .then(d=>setDbStudents(d.leaderboard||[]))
     .catch(()=>{});
 },[]);
 const [realTeachers, setRealTeachers] = useState([]);
 useEffect(()=>{
-  fetch("http://localhost:3001/api/teachers")
+  fetch("https://eduai-urgj.onrender.com/api/teachers")
     .then(r=>r.json())
     .then(d=>setRealTeachers(d.teachers||[]))
     .catch(()=>{});
@@ -1855,7 +1855,7 @@ useEffect(()=>{
                           if (!email?.trim()) return;
                  const password = window.prompt("Temporary Password:");
                      if (!password?.trim()) return;
-                  fetch("http://localhost:3001/api/register", {
+                  fetch("https://eduai-urgj.onrender.com/api/register", {
                   method:"POST", headers:{"Content-Type":"application/json"},
                   body: JSON.stringify({ name, email, password, role:"student" })
                       }).then(r=>r.json()).then(d=>{
@@ -1894,12 +1894,12 @@ useEffect(()=>{
                 if (!email?.trim()) return;
                 const password = window.prompt("Temporary Password:");
                 if (!password?.trim()) return;
-                fetch("http://localhost:3001/api/register", {
+                fetch("https://eduai-urgj.onrender.com/api/register", {
                   method:"POST", headers:{"Content-Type":"application/json"},
                   body: JSON.stringify({ name, email, password, role:"teacher" })
                 }).then(r=>r.json()).then(d=>{
                   if(d.error) alert("Error: "+d.error);
-                  else { alert(`✅ Teacher "${name}" added successfully!`); fetch("http://localhost:3001/api/teachers").then(r=>r.json()).then(dd=>setRealTeachers(dd.teachers||[])); }
+                  else { alert(`✅ Teacher "${name}" added successfully!`); fetch("https://eduai-urgj.onrender.com/api/teachers").then(r=>r.json()).then(dd=>setRealTeachers(dd.teachers||[])); }
                 });
               }} C={C} style={{ fontSize:11 }}><Plus size={11} /> Add Teacher</BS>
             </div>
@@ -1999,12 +1999,12 @@ useEffect(()=>{
         if(!adminExamTitle?.trim()){alert("Please enter exam title!");return;}
         setAdminCreating(true);
         try{
-          const res=await fetch("http://localhost:3001/api/generate-exam",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({subject:adminExamSubject||"Mathematics",topic:adminExamTitle,difficulty:adminDifficulty||"medium",count:adminExamCount||10})});
+          const res=await fetch("https://eduai-urgj.onrender.com/api/generate-exam",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({subject:adminExamSubject||"Mathematics",topic:adminExamTitle,difficulty:adminDifficulty||"medium",count:adminExamCount||10})});
           const data=await res.json();
           const raw=(data?.result?.response||"").replace(/```json|```/g,"").trim();
           let start=raw.indexOf("["),end=raw.lastIndexOf("]");
           const qs=JSON.parse(raw.substring(start,end+1));
-          await fetch("http://localhost:3001/api/save-exam",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({title:adminExamTitle,subject:adminExamSubject||"Mathematics",duration:adminExamDuration||60,date:adminExamDate,questions:qs,totalMarks:qs.length*5,createdBy:"Admin"})});
+          await fetch("https://eduai-urgj.onrender.com/api/save-exam",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({title:adminExamTitle,subject:adminExamSubject||"Mathematics",duration:adminExamDuration||60,date:adminExamDate,questions:qs,totalMarks:qs.length*5,createdBy:"Admin"})});
           alert(`✅ Exam "${adminExamTitle}" created with ${qs.length} AI questions!`);
           setAdminExamTitle("");
         }catch(e){alert("Failed: "+e.message);}
@@ -2058,7 +2058,7 @@ function SettingsPage({ nav, C, sbProps, dark, setDark }) {
 
   useEffect(() => {
     if (!userId) return;
-    fetch(`http://localhost:3001/api/user-settings/${userId}`)
+    fetch(`https://eduai-urgj.onrender.com/api/user-settings/${userId}`)
       .then(r => r.json())
       .then(d => {
         if (d.error) return;
@@ -2074,7 +2074,7 @@ function SettingsPage({ nav, C, sbProps, dark, setDark }) {
     if (!userId) { setProfileMsg("Not logged in"); return; }
     setSavingProfile(true); setProfileMsg("");
     try {
-      const res = await fetch("http://localhost:3001/api/update-profile", {
+      const res = await fetch("https://eduai-urgj.onrender.com/api/update-profile", {
         method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({ userId, name, phone, school })
       });
@@ -2094,7 +2094,7 @@ function SettingsPage({ nav, C, sbProps, dark, setDark }) {
     if (newPw !== confirmPw) { setPwMsg("New passwords do not match."); return; }
     setSavingPw(true);
     try {
-      const res = await fetch("http://localhost:3001/api/change-password", {
+      const res = await fetch("https://eduai-urgj.onrender.com/api/change-password", {
         method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({ userId, currentPassword: currentPw, newPassword: newPw })
       });
@@ -2109,7 +2109,7 @@ function SettingsPage({ nav, C, sbProps, dark, setDark }) {
     const updated = { ...notifs, [key]: !notifs[key] };
     setNotifs(updated);
     if (!userId) return;
-    fetch("http://localhost:3001/api/update-settings", {
+    fetch("https://eduai-urgj.onrender.com/api/update-settings", {
       method:"POST", headers:{"Content-Type":"application/json"},
       body: JSON.stringify({ userId, notifications: updated })
     }).catch(()=>{});
@@ -2119,7 +2119,7 @@ function SettingsPage({ nav, C, sbProps, dark, setDark }) {
     if (!userId) { setPrefMsg("Not logged in"); return; }
     setSavingPrefs(true); setPrefMsg("");
     try {
-      const res = await fetch("http://localhost:3001/api/update-settings", {
+      const res = await fetch("https://eduai-urgj.onrender.com/api/update-settings", {
         method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({ userId, language })
       });
@@ -2313,7 +2313,7 @@ function DoubtSolver({ nav, C, sbProps }) {
     const userId = (() => { try { return JSON.parse(localStorage.getItem("eduai_user")||"{}").id; } catch { return null; }})();
     if (!userId) return;
     const interval = setInterval(() => {
-      fetch("http://localhost:3001/api/study-time", {
+      fetch("https://eduai-urgj.onrender.com/api/study-time", {
         method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({ userId, subject: "General", minutes: 1 })
       }).catch(()=>{});
@@ -2346,7 +2346,7 @@ function DoubtSolver({ nav, C, sbProps }) {
     setLoading(true);
     setSolution("");
     try {
-      const res = await fetch("http://localhost:3001/api/chat", {
+      const res = await fetch("https://eduai-urgj.onrender.com/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -2467,7 +2467,7 @@ function AuthReal({ nav, setRole, setUser, C }) {
       const body = mode === "login"
         ? { email, password: pass }
         : { name, email, password: pass, role, subjects, studentClass: role==="student"?studentClass:undefined, section: role==="student"?section:undefined, stream: role==="student"?stream:undefined, sciencePart: role==="student"?sciencePart:undefined };
-      const res = await fetch("http://localhost:3001" + endpoint, {
+      const res = await fetch("https://eduai-urgj.onrender.com" + endpoint, {
         method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body)
       });
       const data = await res.json();
@@ -2599,7 +2599,7 @@ function AIPrediction({ nav, C, sbProps }) {
   useEffect(() => {
     const userId = (() => { try { return JSON.parse(localStorage.getItem("eduai_user")||"{}").id; } catch { return null; }})();
     if (!userId) return;
-    fetch(`http://localhost:3001/api/scores/${userId}`)
+    fetch(`https://eduai-urgj.onrender.com/api/scores/${userId}`)
       .then(r=>r.json())
       .then(d=>setMyScores(d.scores||[]))
       .catch(()=>{});
@@ -2765,7 +2765,7 @@ const getDisplaySubjects = () => {
   const predict = async () => {
   setLoading(true); setPrediction(null);
   try {
-    const res = await fetch("http://localhost:3001/api/predict", {
+    const res = await fetch("https://eduai-urgj.onrender.com/api/predict", {
       method:"POST", headers:{"Content-Type":"application/json"},
       body: JSON.stringify({ subjects: getDisplaySubjects(), targetExam, stream: hasSteams ? stream : undefined, classLevel: hasSteams ? classLevel : undefined })
     });
@@ -2980,7 +2980,7 @@ function ExamGenerator({ nav, C, sbProps }) {
     const userId = (() => { try { return JSON.parse(localStorage.getItem("eduai_user")||"{}").id; } catch { return null; }})();
     if (!userId) return;
     const interval = setInterval(() => {
-      fetch("http://localhost:3001/api/study-time", {
+      fetch("https://eduai-urgj.onrender.com/api/study-time", {
         method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({ userId, subject, minutes: 1 })
       }).catch(()=>{});
@@ -2992,7 +2992,7 @@ function ExamGenerator({ nav, C, sbProps }) {
   if (!topic.trim()) { alert("Please enter a topic!"); return; }
   setLoading(true); setQuestions([]); setAnswers({}); setSubmitted(false);
   try {
-    const res = await fetch("http://localhost:3001/api/generate-exam", {
+    const res = await fetch("https://eduai-urgj.onrender.com/api/generate-exam", {
       method:"POST", headers:{"Content-Type":"application/json"},
       body: JSON.stringify({ subject, topic, difficulty, count })
     });
@@ -3193,7 +3193,7 @@ function Quiz({ nav, C, sbProps }) {
     const userId = (() => { try { return JSON.parse(localStorage.getItem("eduai_user")||"{}").id; } catch { return null; }})();
     if (!userId) return;
     const interval = setInterval(() => {
-      fetch("http://localhost:3001/api/study-time", {
+      fetch("https://eduai-urgj.onrender.com/api/study-time", {
         method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({ userId, subject, minutes: 1 })
       }).catch(()=>{});
@@ -3205,7 +3205,7 @@ function Quiz({ nav, C, sbProps }) {
     if (!topic.trim()) { alert("Please enter a topic!"); return; }
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:3001/api/generate-quiz", {
+      const res = await fetch("https://eduai-urgj.onrender.com/api/generate-quiz", {
         method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({ subject, topic, difficulty, count, questionType, purpose })
       });
@@ -3264,14 +3264,14 @@ function Quiz({ nav, C, sbProps }) {
     // Save quiz attempt always (for history)
     const userId = (() => { try { return JSON.parse(localStorage.getItem("eduai_user")||"{}").id; } catch { return null; }})();
     if (userId) {
-      fetch("http://localhost:3001/api/quiz-attempt", {
+      fetch("https://eduai-urgj.onrender.com/api/quiz-attempt", {
         method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({ userId, subject, topic, questionType, purpose, score:earned, totalMarks, percentage:pct, questionCount:questions.length })
       }).catch(()=>{});
       // Whether this counts toward the gradebook/analytics is now the
       // user's explicit choice via the toggle, not tied to purpose.
       if (saveToRecord) {
-        fetch("http://localhost:3001/api/scores", {
+        fetch("https://eduai-urgj.onrender.com/api/scores", {
           method:"POST", headers:{"Content-Type":"application/json"},
           body: JSON.stringify({ userId, subject, examName:`Quiz: ${topic}`, score:earned, totalMarks, percentage:pct })
         }).catch(()=>{});
