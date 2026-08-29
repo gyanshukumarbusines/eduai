@@ -33,28 +33,69 @@ function firstNonEmpty(...vals) {
   }
   return "";
 }
-
 async function callAI(messages, maxTokens) {
-  const r = await fetch(CF_URL, {
-    method: "POST",
-    headers: { "Authorization": "Bearer " + CF_TOKEN, "Content-Type": "application/json" },
-    body: JSON.stringify({ max_tokens: maxTokens || 1024, messages })
-  });
-  const d = await r.json();
-  // Prioritize choices[0].message.content — this is where Cloudflare
-  // actually puts the real answer now. result.response is often an
-  // empty string (not null), so it must NOT be checked first with ??.
-  let text = firstNonEmpty(
-    d?.result?.choices?.[0]?.message?.content,
-    d?.result?.response,
-    d?.result?.output_text,
-    d?.response
-  );
-  if (Array.isArray(text)) text = text.map(t => (typeof t === "string" ? t : t?.text || "")).join("");
-  if (typeof text !== "string") text = JSON.stringify(text);
-  return { raw: d, text };
-}
+  console.log("[AI CALL] Starting Cloudflare AI request...");
 
+  try {
+    const r = await fetch(CF_URL, {
+      method: "POST",
+      headers: {
+        "Authorization": "Bearer " + CF_TOKEN,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        max_tokens: maxTokens || 1024,
+        messages
+      })
+    });
+
+    console.log("[AI CALL] HTTP STATUS:", r.status, r.statusText);
+
+    const rawText = await r.text();
+
+    console.log("[AI RAW RESPONSE]", rawText);
+
+    let d;
+
+    try {
+      d = JSON.parse(rawText);
+    } catch (parseError) {
+      console.log("[AI JSON PARSE ERROR]", parseError.message);
+      return {
+        raw: rawText,
+        text: rawText
+      };
+    }
+
+    let text = firstNonEmpty(
+      d?.result?.choices?.[0]?.message?.content,
+      d?.result?.response,
+      d?.result?.output_text,
+      d?.response
+    );
+
+    if (Array.isArray(text)) {
+      text = text
+        .map(t => typeof t === "string" ? t : t?.text || "")
+        .join("");
+    }
+
+    if (typeof text !== "string") {
+      text = JSON.stringify(text);
+    }
+
+    console.log("[AI TEXT]", text.substring(0, 300));
+
+    return {
+      raw: d,
+      text
+    };
+
+  } catch (e) {
+    console.log("[AI FETCH ERROR]", e.message);
+    throw e;
+  }
+}
 app.post("/api/register", (req, res) => {
   const { name, email, password, role = "student", subjects, studentClass, section, stream, sciencePart } = req.body;
   const db = readDB();
