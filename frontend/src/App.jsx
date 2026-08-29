@@ -811,7 +811,11 @@ function AITutor({ nav, C, sbProps }) {
       }
     );
     const data = await response.json();
-    const reply = data?.result?.response || "No reply.";
+    const reply =
+  data?.result?.response ||
+  data?.result?.choices?.[0]?.message?.content ||
+  data?.result?.choices?.[0]?.text ||
+  "No reply...";
     setMessages(m => [...m, { role:"assistant", content:reply }]);
     if (handsFree && window.speechSynthesis) {
       window.speechSynthesis.cancel();
