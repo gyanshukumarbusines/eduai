@@ -811,6 +811,7 @@ function AITutor({ nav, C, sbProps }) {
       }
     );
     const data = await response.json();
+    console.log("AI RESPONSE:", data);
     const reply =
   data?.result?.response ||
   data?.result?.choices?.[0]?.message?.content ||
