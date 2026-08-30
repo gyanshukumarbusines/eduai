@@ -36,21 +36,41 @@ function firstNonEmpty(...vals) {
 }
 async function callAI(messages, maxTokens) {
   const models = [
-    "gemini-2.5-flash",
-    "gemini-2.5-flash-lite"
+    "gemini-2.5-flash-lite",
+    "gemini-2.5-flash"
   ];
 
+  const systemMessage = messages.find(
+    m => m.role === "system"
+  );
+
+  const contents = messages
+    .filter(m => m.role !== "system")
+    .map(m => ({
+      role: m.role === "assistant" ? "model" : "user",
+      parts: [
+        {
+          text: String(m.content || "")
+        }
+      ]
+    }));
+
   const body = {
-    contents: messages
-      .filter(m => m.role !== "system")
-      .map(m => ({
-        role: m.role === "assistant" ? "model" : "user",
-        parts: [{ text: m.content }]
-      })),
+    contents,
     generationConfig: {
       maxOutputTokens: maxTokens || 1024
     }
   };
+
+  if (systemMessage) {
+    body.systemInstruction = {
+      parts: [
+        {
+          text: String(systemMessage.content || "")
+        }
+      ]
+    };
+  }
 
   let lastError = null;
 
@@ -62,12 +82,13 @@ async function callAI(messages, maxTokens) {
         );
 
         const url =
-          `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_API_KEY}`;
+          `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
 
         const response = await fetch(url, {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "x-goog-api-key": GEMINI_API_KEY
           },
           body: JSON.stringify(body)
         });
@@ -78,24 +99,75 @@ async function callAI(messages, maxTokens) {
           `[AI CALL] HTTP STATUS: ${response.status} ${response.statusText}`
         );
 
-        console.log("[AI RAW RESPONSE]", rawText);
+        console.log(
+          "[AI RAW RESPONSE]",
+          rawText.substring(0, 2000)
+        );
+
+        let data = null;
+
+        try {
+          data = JSON.parse(rawText);
+        } catch (parseError) {
+          lastError = new Error(
+            `Gemini returned invalid JSON: ${rawText.substring(0, 500)}`
+          );
+
+          if (attempt < 3) {
+            const delay = attempt * 2000;
+
+            console.log(
+              `[AI CALL] Invalid JSON. Retrying in ${delay}ms...`
+            );
+
+            await new Promise(resolve =>
+              setTimeout(resolve, delay)
+            );
+
+            continue;
+          }
+
+          break;
+        }
 
         if (response.ok) {
-          const data = JSON.parse(rawText);
-
           const text =
             data?.candidates?.[0]?.content?.parts
-              ?.map(p => p.text || "")
+              ?.map(p => p?.text || "")
               .join("") || "";
 
           if (text.trim()) {
-            return text;
+            console.log(
+              `[AI CALL] Success using ${model}`
+            );
+
+            // IMPORTANT:
+            // Return an object because the rest of your
+            // server uses result.text
+            return {
+              text,
+              raw: data,
+              model
+            };
           }
 
-          lastError = new Error("Gemini returned an empty response.");
-        } else {
           lastError = new Error(
-            `Gemini HTTP ${response.status}: ${rawText}`
+            "Gemini returned an empty response."
+          );
+
+          console.log(
+            `[AI CALL] ${model} returned empty response.`
+          );
+        } else {
+          const errorMessage =
+            data?.error?.message ||
+            `Gemini HTTP ${response.status}: ${rawText}`;
+
+          lastError = new Error(errorMessage);
+
+          console.error(
+            `[AI CALL] ${model} error:`,
+            errorMessage
           );
 
           // Retry temporary/server-capacity errors
@@ -114,7 +186,6 @@ async function callAI(messages, maxTokens) {
               continue;
             }
 
-            // Try the next model
             console.log(
               `[AI CALL] ${model} failed after 3 attempts. Trying fallback model...`
             );
@@ -122,7 +193,12 @@ async function callAI(messages, maxTokens) {
             break;
           }
 
-          // Don't retry permanent errors such as 400/401/403/404
+          // Permanent errors:
+          // 400, 401, 403, 404 etc.
+          console.log(
+            `[AI CALL] Permanent error ${response.status}. Trying next model...`
+          );
+
           break;
         }
       } catch (error) {
@@ -135,6 +211,10 @@ async function callAI(messages, maxTokens) {
 
         if (attempt < 3) {
           const delay = attempt * 2000;
+
+          console.log(
+            `[AI CALL] Network error. Retrying in ${delay}ms...`
+          );
 
           await new Promise(resolve =>
             setTimeout(resolve, delay)
