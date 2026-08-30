@@ -36,8 +36,8 @@ function firstNonEmpty(...vals) {
 }
 async function callAI(messages, maxTokens) {
   const models = [
-    "gemini-2.5-flash-lite",
-    "gemini-2.5-flash"
+    "gemini-3.5-flash",
+    "gemini-3.1-flash-lite",
   ];
 
   const systemMessage = messages.find(
@@ -147,7 +147,7 @@ async function callAI(messages, maxTokens) {
             return {
               text,
               raw: data,
-              model
+              model,
             };
           }
 
