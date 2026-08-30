@@ -802,10 +802,22 @@ function AITutor({ nav, C, sbProps }) {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-  max_tokens: 1024,
+  max_tokens: 4096,
   messages: [
-    { role:"system", content:"You are an expert AI tutor for Indian students. Subject: " + subject + ". Explain clearly step by step." },
-    { role:"user", content:msg }
+    {
+      role: "system",
+      content:
+        "You are an expert AI tutor for Indian students. " +
+        "Subject: " + subject + ". " +
+        "Give complete, detailed, easy-to-understand explanations. " +
+        "Explain step by step, include important concepts, examples, formulas when relevant, " +
+        "and do not stop the explanation early. " +
+        "For educational questions, provide a thorough answer suitable for the student's level."
+    },
+    {
+      role: "user",
+      content: msg
+    }
   ]
 })
       }
