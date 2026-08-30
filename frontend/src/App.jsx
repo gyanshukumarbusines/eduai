@@ -1,3 +1,7 @@
+import ReactMarkdown from "react-markdown";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import "katex/dist/katex.min.css";
 import { useState, useEffect, useRef } from "react";
 import {
   RadarChart, Radar, PolarGrid, PolarAngleAxis,
@@ -904,7 +908,9 @@ function AITutor({ nav, C, sbProps }) {
                       </div>
                     )}
                     <div style={{ maxWidth:"76%", padding:"10px 14px", borderRadius:13, background:m.role === "user" ? gr(C) : C.surface, border:m.role === "user" ? "none" : `1px solid ${C.border}`, fontSize:13, lineHeight:1.65, color:C.text, whiteSpace:"pre-wrap", display:"flex", flexDirection:"column", gap:8 }}>
-                      {m.content}
+                      <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+                        {m.content}
+                      </ReactMarkdown>
                       {m.role === "assistant" && <SpeakButton text={m.content} C={C} />}
                     </div>
                     {m.role === "user" && (
