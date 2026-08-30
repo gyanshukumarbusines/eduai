@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json({ limit: "10mb" }));
 
-const DB_FILE = "db.json";
+const DB_FILE = process.env.DB_FILE || "db.json";
 const CF_URL = "https://api.cloudflare.com/client/v4/accounts/1db3f402b2806b08633fb0dced2d1f8d/ai/run/@cf/meta/llama-3.3-70b-instruct-fp8-fast";
 const CF_TOKEN = process.env.CF_TOKEN;
 
