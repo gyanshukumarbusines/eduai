@@ -35,7 +35,7 @@ function firstNonEmpty(...vals) {
   return "";
 }
 async function callAI(messages, maxTokens) {
-  console.log("[AI CALL] Starting Gemini AI request...");
+  console.log("[gemini] Starting Gemini AI request...");
 
   try {
     const contents = messages
@@ -61,7 +61,7 @@ async function callAI(messages, maxTokens) {
     }
 
     const r = await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" +
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.7-flash:generateContent?key=" +
         GEMINI_API_KEY,
       {
         method: "POST",
@@ -72,7 +72,7 @@ async function callAI(messages, maxTokens) {
       }
     );
 
-    console.log("[AI CALL] HTTP STATUS:", r.status, r.statusText);
+    console.log("[gemini] HTTP STATUS:", r.status, r.statusText);
 
     const rawText = await r.text();
 
