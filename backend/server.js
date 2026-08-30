@@ -35,88 +35,118 @@ function firstNonEmpty(...vals) {
   return "";
 }
 async function callAI(messages, maxTokens) {
-  console.log("[gemini] Starting Gemini AI request...");
+  const models = [
+    "gemini-2.5-flash",
+    "gemini-2.5-flash-lite"
+  ];
 
-  try {
-    const contents = messages
+  const body = {
+    contents: messages
       .filter(m => m.role !== "system")
       .map(m => ({
         role: m.role === "assistant" ? "model" : "user",
-        parts: [{ text: String(m.content || "") }]
-      }));
+        parts: [{ text: m.content }]
+      })),
+    generationConfig: {
+      maxOutputTokens: maxTokens || 1024
+    }
+  };
 
-    const systemMessage = messages.find(m => m.role === "system");
+  let lastError = null;
 
-    const body = {
-      contents,
-      generationConfig: {
-        maxOutputTokens: maxTokens || 1024
+  for (const model of models) {
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      try {
+        console.log(
+          `[AI CALL] Model: ${model}, Attempt: ${attempt}/3`
+        );
+
+        const url =
+          `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_API_KEY}`;
+
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(body)
+        });
+
+        const rawText = await response.text();
+
+        console.log(
+          `[AI CALL] HTTP STATUS: ${response.status} ${response.statusText}`
+        );
+
+        console.log("[AI RAW RESPONSE]", rawText);
+
+        if (response.ok) {
+          const data = JSON.parse(rawText);
+
+          const text =
+            data?.candidates?.[0]?.content?.parts
+              ?.map(p => p.text || "")
+              .join("") || "";
+
+          if (text.trim()) {
+            return text;
+          }
+
+          lastError = new Error("Gemini returned an empty response.");
+        } else {
+          lastError = new Error(
+            `Gemini HTTP ${response.status}: ${rawText}`
+          );
+
+          // Retry temporary/server-capacity errors
+          if ([429, 500, 502, 503, 504].includes(response.status)) {
+            if (attempt < 3) {
+              const delay = attempt * 2000;
+
+              console.log(
+                `[AI CALL] Temporary error. Retrying in ${delay}ms...`
+              );
+
+              await new Promise(resolve =>
+                setTimeout(resolve, delay)
+              );
+
+              continue;
+            }
+
+            // Try the next model
+            console.log(
+              `[AI CALL] ${model} failed after 3 attempts. Trying fallback model...`
+            );
+
+            break;
+          }
+
+          // Don't retry permanent errors such as 400/401/403/404
+          break;
+        }
+      } catch (error) {
+        lastError = error;
+
+        console.error(
+          "[AI FETCH ERROR]",
+          error.message
+        );
+
+        if (attempt < 3) {
+          const delay = attempt * 2000;
+
+          await new Promise(resolve =>
+            setTimeout(resolve, delay)
+          );
+
+          continue;
+        }
       }
-    };
-
-    if (systemMessage) {
-      body.systemInstruction = {
-        parts: [{ text: String(systemMessage.content || "") }]
-      };
     }
-
-    const r = await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.7-flash:generateContent?key=" +
-        GEMINI_API_KEY,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(body)
-      }
-    );
-
-    console.log("[gemini] HTTP STATUS:", r.status, r.statusText);
-
-    const rawText = await r.text();
-
-    console.log("[AI RAW RESPONSE]", rawText);
-
-    let d;
-
-    try {
-      d = JSON.parse(rawText);
-    } catch (parseError) {
-      console.log("[AI JSON PARSE ERROR]", parseError.message);
-      return {
-        raw: rawText,
-        text: rawText
-      };
-    }
-
-    if (!r.ok) {
-      const errorMessage =
-        d?.error?.message || "Gemini API request failed";
-
-      throw new Error(errorMessage);
-    }
-
-    let text =
-      d?.candidates?.[0]?.content?.parts
-        ?.map(p => p.text || "")
-        .join("") || "";
-
-    if (!text) {
-      text = JSON.stringify(d);
-    }
-
-    console.log("[AI TEXT]", text.substring(0, 300));
-
-    return {
-      raw: rawText,
-      text
-    };
-
-  } catch (e) {
-    console.log("[AI FETCH ERROR]", e.message);
-    throw e;
   }
+
+  throw lastError || new Error("AI service unavailable.");
 }
 app.post("/api/register", (req, res) => {
   const { name, email, password, role = "student", subjects, studentClass, section, stream, sciencePart } = req.body;
