@@ -9,6 +9,7 @@ app.use(express.json({ limit: "10mb" }));
 const DB_FILE = process.env.DB_FILE || "db.json";
 const CF_URL = "https://api.cloudflare.com/client/v4/accounts/1db3f402b2806b08633fb0dced2d1f8d/ai/run/@cf/meta/llama-3.3-70b-instruct-fp8-fast";
 const CF_TOKEN = process.env.CF_TOKEN;
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
 function readDB() {
   if (!fs.existsSync(DB_FILE)) {
@@ -34,20 +35,42 @@ function firstNonEmpty(...vals) {
   return "";
 }
 async function callAI(messages, maxTokens) {
-  console.log("[AI CALL] Starting Cloudflare AI request...");
+  console.log("[AI CALL] Starting Gemini AI request...");
 
   try {
-    const r = await fetch(CF_URL, {
-      method: "POST",
-      headers: {
-        "Authorization": "Bearer " + CF_TOKEN,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        max_tokens: maxTokens || 1024,
-        messages
-      })
-    });
+    const contents = messages
+      .filter(m => m.role !== "system")
+      .map(m => ({
+        role: m.role === "assistant" ? "model" : "user",
+        parts: [{ text: String(m.content || "") }]
+      }));
+
+    const systemMessage = messages.find(m => m.role === "system");
+
+    const body = {
+      contents,
+      generationConfig: {
+        maxOutputTokens: maxTokens || 1024
+      }
+    };
+
+    if (systemMessage) {
+      body.systemInstruction = {
+        parts: [{ text: String(systemMessage.content || "") }]
+      };
+    }
+
+    const r = await fetch(
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" +
+        GEMINI_API_KEY,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body)
+      }
+    );
 
     console.log("[AI CALL] HTTP STATUS:", r.status, r.statusText);
 
@@ -67,27 +90,26 @@ async function callAI(messages, maxTokens) {
       };
     }
 
-    let text = firstNonEmpty(
-      d?.result?.choices?.[0]?.message?.content,
-      d?.result?.response,
-      d?.result?.output_text,
-      d?.response
-    );
+    if (!r.ok) {
+      const errorMessage =
+        d?.error?.message || "Gemini API request failed";
 
-    if (Array.isArray(text)) {
-      text = text
-        .map(t => typeof t === "string" ? t : t?.text || "")
-        .join("");
+      throw new Error(errorMessage);
     }
 
-    if (typeof text !== "string") {
-      text = JSON.stringify(text);
+    let text =
+      d?.candidates?.[0]?.content?.parts
+        ?.map(p => p.text || "")
+        .join("") || "";
+
+    if (!text) {
+      text = JSON.stringify(d);
     }
 
     console.log("[AI TEXT]", text.substring(0, 300));
 
     return {
-      raw: d,
+      raw: rawText,
       text
     };
 
