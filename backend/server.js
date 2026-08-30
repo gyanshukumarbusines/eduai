@@ -58,7 +58,8 @@ async function callAI(messages, maxTokens) {
   const body = {
     contents,
     generationConfig: {
-      maxOutputTokens: maxTokens || 1024
+      maxOutputTokens: maxTokens || 2048,
+      temperature: 0.7
     }
   };
 
