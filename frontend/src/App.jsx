@@ -2741,21 +2741,40 @@ function AIPrediction({ nav, C, sbProps }) {
   const classes = classVariants.filter(c => c.startsWith(`Class ${classNumber}`));
   const exams = ["JEE Mains","JEE Advanced","NEET","UPSC","CBSE Boards","State Board"];
 
+  // The raw examSubjects table reuses the same illustrative placeholder
+  // numbers across CBSE/State Board and across Class 11/12 — this applies a
+  // small deterministic offset so the DEFAULT starting values actually look
+  // distinct per board/class, instead of appearing identical. This never
+  // touches real student data — that override still happens afterward.
+  const applyBaselineOffset = (subjects, exam, classNum) => {
+    let offset = 0;
+    if (exam === "State Board") offset -= 4;
+    if (classNum === "12") offset += 3;
+    if (offset === 0) return subjects;
+    const out = {};
+    Object.entries(subjects).forEach(([k,v]) => { out[k] = Math.max(0, Math.min(100, v + offset)); });
+    return out;
+  };
+
  const computeSubjectsFor = (exam, classNum, str, cls) => {
   try {
     const examUsesBoardStructure = ["CBSE Boards","State Board"].includes(exam);
+    let result;
     if (examUsesBoardStructure) {
       if (["11","12"].includes(classNum)) {
         const streamData = examSubjects[exam]?.[str];
-        if (!streamData) return genericSubjects[classNum] || { Mathematics:78, English:83 };
-        const classData = streamData[cls];
-        if (!classData) {
-          const firstMatch = Object.keys(streamData).find(k => k.startsWith(`Class ${classNum}`));
-          return streamData[firstMatch] || genericSubjects[classNum] || { Mathematics:78, English:83 };
+        if (!streamData) result = genericSubjects[classNum] || { Mathematics:78, English:83 };
+        else {
+          const classData = streamData[cls];
+          if (!classData) {
+            const firstMatch = Object.keys(streamData).find(k => k.startsWith(`Class ${classNum}`));
+            result = streamData[firstMatch] || genericSubjects[classNum] || { Mathematics:78, English:83 };
+          } else result = classData;
         }
-        return classData;
+      } else {
+        result = genericSubjects[classNum] || { Mathematics:78, English:83 };
       }
-      return genericSubjects[classNum] || { Mathematics:78, English:83 };
+      return applyBaselineOffset(result, exam, classNum);
     }
     return examSubjects[exam] || { Mathematics:78, English:83 };
   } catch(e) {
