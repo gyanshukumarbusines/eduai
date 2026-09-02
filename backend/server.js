@@ -1,20 +1,44 @@
+require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
 const crypto = require("crypto");
 const fs = require("fs");
+const { Pool } = require("pg");
 const app = express();
 app.use(cors());
 app.use(express.json({ limit: "10mb" }));
-
 const DB_FILE = process.env.DB_FILE || "db.json";
 const CF_URL = process.env.CF_URL;
 const CF_TOKEN = process.env.CF_TOKEN;
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
-function readDB() {
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }
+});
+
+let dbCache = null;
+let dbWriteQueue = Promise.resolve();
+
+function getDefaultDB() {
+  return {
+    users: [],
+    scores: [],
+    exams: [],
+    studyTime: [],
+    quizAttempts: [],
+    enrollments: []
+  };
+}
+
+function readLocalDB() {
   if (!fs.existsSync(DB_FILE)) {
-    fs.writeFileSync(DB_FILE, JSON.stringify({ users: [], scores: [], exams: [], studyTime: [] }, null, 2));
+    const data = getDefaultDB();
+    fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2));
+    return data;
   }
+
   const db = JSON.parse(fs.readFileSync(DB_FILE));
   if (!db.users) db.users = [];
   if (!db.scores) db.scores = [];
@@ -22,9 +46,62 @@ function readDB() {
   if (!db.studyTime) db.studyTime = [];
   if (!db.quizAttempts) db.quizAttempts = [];
   if (!db.enrollments) db.enrollments = [];
+
   return db;
 }
-function writeDB(data) { fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2)); }
+
+function readDB() {
+  return dbCache || readLocalDB();
+}
+
+function writeDB(data) {
+  dbCache = data;
+
+  fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2));
+
+  dbWriteQueue = dbWriteQueue
+    .then(() =>
+      pool.query(
+        `INSERT INTO eduai_state (id, data)
+         VALUES (1, $1::jsonb)
+         ON CONFLICT (id)
+         DO UPDATE SET data = EXCLUDED.data`,
+        [JSON.stringify(data)]
+      )
+    )
+    .catch((err) => {
+      console.error("Neon database write failed:", err.message);
+    });
+}
+
+async function loadDBFromNeon() {
+  try {
+    const result = await pool.query(
+      "SELECT data FROM eduai_state WHERE id = 1"
+    );
+
+    if (result.rows.length > 0) {
+      dbCache = result.rows[0].data;
+      console.log("✅ EduAI data loaded from Neon");
+    } else {
+      dbCache = readLocalDB();
+
+      await pool.query(
+        `INSERT INTO eduai_state (id, data)
+         VALUES (1, $1::jsonb)
+         ON CONFLICT (id)
+         DO UPDATE SET data = EXCLUDED.data`,
+        [JSON.stringify(dbCache)]
+      );
+
+      console.log("✅ Local data copied to Neon");
+    }
+  } catch (err) {
+    console.error("❌ Neon database load failed:", err.message);
+    dbCache = readLocalDB();
+  }
+}
+
 function genToken(id) { return crypto.createHash("sha256").update(id + "secret2026").digest("hex"); }
 
 function firstNonEmpty(...vals) {
@@ -572,4 +649,6 @@ app.get("/api/admin/stats", (req, res) => {
 
 app.get("/api/health", (req, res) => res.json({ status: "healthy" }));
 
-app.listen(3001, () => console.log("✅ EduAI Backend v8.0 running on port 3001 — Notifications, Certificates & Admin Stats added!"));
+loadDBFromNeon().then(() => {
+  app.listen(3001, () => console.log("🟩 EduAI Backend v8.0 running on port 3001 — Notifications, Certificates & Admin Stats added!"));
+});
