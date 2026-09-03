@@ -111,7 +111,7 @@ function firstNonEmpty(...vals) {
   }
   return "";
 }
-async function callAI(messages, maxTokens) {
+async function callAI(messages, maxTokens, responseSchema = null) {
   const models = [
     "gemini-3.5-flash",
     "gemini-3.1-flash-lite",
@@ -133,12 +133,16 @@ async function callAI(messages, maxTokens) {
     }));
 
   const body = {
-    contents,
-    generationConfig: {
-      maxOutputTokens: maxTokens || 4096,
-      temperature: 0.7
-    }
-  };
+  generationConfig: {
+    maxOutputTokens: maxTokens || 4096,
+    temperature: 0.7
+  },
+};
+
+if (responseSchema) {
+  body.generationConfig.responseMimeType = "application/json";
+  body.generationConfig.responseSchema = responseSchema;
+}
 
   if (systemMessage) {
     body.systemInstruction = {
@@ -477,8 +481,26 @@ app.post("/api/generate-exam", async (req, res) => {
       { role: "system", content: "You are an exam generator. Output ONLY a raw JSON array. No markdown, no code fences, no explanation text before or after." },
       { role: "user", content: `Generate ${count || 5} multiple choice questions about "${topic}" in ${subject} subject, ${difficulty || "medium"} difficulty, for Indian students. Output format - a JSON array only: [{"q":"question text","opts":["option A","option B","option C","option D"],"ans":0,"explanation":"why this is correct","marks":5}]` }
     ];
+    const examSchema = {
+  type: "ARRAY",
+  items: {
+    type: "OBJECT",
+    properties: {
+      q: { type: "STRING" },
+      opts: {
+        type: "ARRAY",
+        items: { type: "STRING" }
+      },
+      ans: { type: "INTEGER" },
+      explanation: { type: "STRING" },
+      marks: { type: "INTEGER" }
+    },
+    required: ["q", "opts", "ans", "explanation", "marks"]
+  }
+};
+
     const maxTok = Math.min((count || 5) * 400, 8000);
-    const result = await callAI(messages, maxTok);
+    const result = await callAI(messages, maxTok, examSchema);
     console.log("[EXAM TEXT]", String(result.text).substring(0, 300));
     res.json({ result: { response: result.text } });
   } catch(e) {
