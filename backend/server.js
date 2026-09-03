@@ -134,6 +134,7 @@ async function callAI(messages, maxTokens, responseSchema = null) {
   .filter(m => m.parts[0].text.length > 0);
 
   const body = {
+    contents,
   generationConfig: {
     maxOutputTokens: maxTokens || 4096,
     temperature: 0.7
