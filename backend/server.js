@@ -122,15 +122,16 @@ async function callAI(messages, maxTokens, responseSchema = null) {
   );
 
   const contents = messages
-    .filter(m => m.role !== "system")
-    .map(m => ({
-      role: m.role === "assistant" ? "model" : "user",
-      parts: [
-        {
-          text: String(m.content || "")
-        }
-      ]
-    }));
+  .filter(m => m.role !== "system")
+  .map(m => ({
+    role: m.role === "assistant" ? "model" : "user",
+    parts: [
+      {
+        text: String(m.content ?? m.text ?? "").trim()
+      }
+    ]
+  }))
+  .filter(m => m.parts[0].text.length > 0);
 
   const body = {
   generationConfig: {
