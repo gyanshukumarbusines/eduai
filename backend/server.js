@@ -617,14 +617,125 @@ app.post("/api/generate-quiz", async (req, res) => {
   console.log("[QUIZ REQUEST]", subject, topic, difficulty, count, questionType, purpose);
   try {
     const schemas = {
-      mcq: `[{"type":"mcq","q":"question text","opts":["A","B","C","D"],"ans":0,"explanation":"why","marks":5}]`,
-      multi: `[{"type":"multi","q":"question text (mention 'select all that apply')","opts":["A","B","C","D","E"],"ans":[0,2],"explanation":"why","marks":5}]`,
-      truefalse: `[{"type":"truefalse","q":"statement text","ans":true,"explanation":"why","marks":3}]`,
-      fill: `[{"type":"fill","q":"sentence with ___ blank","answer":"expected word/phrase","explanation":"why","marks":3}]`,
-      matching: `[{"type":"matching","q":"Match the following","pairs":[{"left":"term1","right":"definition1"},{"left":"term2","right":"definition2"}],"marks":5}]`,
-      short: `[{"type":"short","q":"question text","answer":"expected short answer","explanation":"why","marks":5}]`,
-      ordering: `[{"type":"ordering","q":"Put these in correct order","items":["step1","step2","step3","step4"],"marks":5}]`,
-    };
+  mcq: {
+    type: "ARRAY",
+    items: {
+      type: "OBJECT",
+      properties: {
+        question: { type: "STRING" },
+        options: {
+          type: "ARRAY",
+          items: { type: "STRING" }
+        },
+        answer: { type: "INTEGER" },
+        explanation: { type: "STRING" }
+      },
+      required: ["question", "options", "answer", "explanation"]
+    }
+  },
+
+  multiple: {
+    type: "ARRAY",
+    items: {
+      type: "OBJECT",
+      properties: {
+        question: { type: "STRING" },
+        options: {
+          type: "ARRAY",
+          items: { type: "STRING" }
+        },
+        answer: {
+          type: "ARRAY",
+          items: { type: "INTEGER" }
+        },
+        explanation: { type: "STRING" }
+      },
+      required: ["question", "options", "answer", "explanation"]
+    }
+  },
+
+  truefalse: {
+    type: "ARRAY",
+    items: {
+      type: "OBJECT",
+      properties: {
+        question: { type: "STRING" },
+        answer: { type: "BOOLEAN" },
+        explanation: { type: "STRING" }
+      },
+      required: ["question", "answer", "explanation"]
+    }
+  },
+
+  fillblank: {
+    type: "ARRAY",
+    items: {
+      type: "OBJECT",
+      properties: {
+        question: { type: "STRING" },
+        answer: { type: "STRING" },
+        explanation: { type: "STRING" }
+      },
+      required: ["question", "answer", "explanation"]
+    }
+  },
+
+  matching: {
+    type: "ARRAY",
+    items: {
+      type: "OBJECT",
+      properties: {
+        question: { type: "STRING" },
+        pairs: {
+          type: "ARRAY",
+          items: {
+            type: "OBJECT",
+            properties: {
+              left: { type: "STRING" },
+              right: { type: "STRING" }
+            },
+            required: ["left", "right"]
+          }
+        },
+        explanation: { type: "STRING" }
+      },
+      required: ["question", "pairs", "explanation"]
+    }
+  },
+
+  shortanswer: {
+    type: "ARRAY",
+    items: {
+      type: "OBJECT",
+      properties: {
+        question: { type: "STRING" },
+        answer: { type: "STRING" },
+        explanation: { type: "STRING" }
+      },
+      required: ["question", "answer", "explanation"]
+    }
+  },
+
+  ordering: {
+    type: "ARRAY",
+    items: {
+      type: "OBJECT",
+      properties: {
+        question: { type: "STRING" },
+        items: {
+          type: "ARRAY",
+          items: { type: "STRING" }
+        },
+        answer: {
+          type: "ARRAY",
+          items: { type: "INTEGER" }
+        },
+        explanation: { type: "STRING" }
+      },
+      required: ["question", "items", "answer", "explanation"]
+    }
+  }
+};
     const schema = schemas[questionType] || schemas.mcq;
     const purposeNote = {
       diagnostic: "This is a DIAGNOSTIC quiz to assess prior knowledge before teaching a topic — keep questions foundational.",
@@ -637,7 +748,7 @@ app.post("/api/generate-quiz", async (req, res) => {
       { role: "user", content: `Generate ${count || 5} ${questionType} questions about "${topic}" in ${subject}, ${difficulty || "medium"} difficulty.` }
     ];
     const maxTok = Math.min((count || 5) * 350, 8000);
-    const result = await callAI(messages, maxTok);
+    const result = await callAI(messages, maxTok, schema);
     console.log("[QUIZ RAW]", JSON.stringify(result.raw).substring(0, 500));
     console.log("[QUIZ TEXT]", String(result.text).substring(0, 300));
     res.json({ result: { response: result.text } });
